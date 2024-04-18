@@ -1,15 +1,15 @@
 [
   {
-    "ContainingType": "InventoryAPI.Controllers.WeatherForecastController",
+    "ContainingType": "InventoryAPI.Controllers.UserController",
     "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "RelativePath": "User",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[InventoryAPI.WeatherForecast, InventoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[InventoryAPI.Models.User, InventoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
