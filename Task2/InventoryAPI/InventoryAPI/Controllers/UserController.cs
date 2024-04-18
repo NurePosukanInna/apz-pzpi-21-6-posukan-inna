@@ -3,6 +3,8 @@ using InventoryAPI.Models;
 using InventoryAPI.Services;
 using System.Collections.Generic;
 using InventoryAPI.Interfaces;
+using System;
+using System.Threading.Tasks;
 
 namespace InventoryAPI.Controllers
 {
@@ -20,20 +22,41 @@ namespace InventoryAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> UserLogin([FromBody] User user)
         {
-            return await _userService.UserLogin(user);
+            try
+            {
+                return await _userService.UserLogin(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error during user login: {ex.Message}");
+            }
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> UserRegistration([FromBody] User user)
         {
-            return await _userService.UserRegistration(user);
+            try
+            {
+                return await _userService.UserRegistration(user);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error during user registration: {ex.Message}");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
-            IEnumerable<User> users = await _userService.GetAllUsers();
-            return Ok(users);
+            try
+            {
+                IEnumerable<User> users = await _userService.GetAllUsers();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error getting all users: {ex.Message}");
+            }
         }
     }
 }

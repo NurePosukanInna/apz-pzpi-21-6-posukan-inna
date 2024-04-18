@@ -84,17 +84,10 @@ namespace InventoryAPI.Services
         }
         public async Task<IEnumerable<User>> GetAllUsers()
         {
-            try
-            {
-                var users = await _context.Users.ToListAsync();
-                return users;
-            }
-            catch (Exception ex)
-            {
-                // Handle exception
-                return new List<User>(); // Return an empty list in case of error
-            }
+            var users = await _context.Users.ToListAsync();
+            return users;
         }
+
         private JwtSecurityToken GenerateToken(List<Claim> authClaims)
         {
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
