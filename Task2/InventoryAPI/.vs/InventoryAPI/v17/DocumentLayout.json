@@ -3,60 +3,24 @@
   "WorkspaceRootPath": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\isupplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\isupplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\supplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\supplierrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\supplierrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\storeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\istoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\istoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\saleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\saleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -67,28 +31,112 @@
       "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\service\\categoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\storeproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\storeproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\isupplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\isupplierservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\isupplierrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\isupplierrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\istoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\istoreservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\isaleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\isaleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\interfaces\\icategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\dto\\updatestatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\dto\\updatestatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\dto\\productdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\supplierrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\supplierrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\salecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\salecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\supplierrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\supplierrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\sale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\sale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\storeproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\storeproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|solutionrelative:inventoryapi\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5818AC88-A08C-45BD-B4B5-AE5ED9D9B182}|InventoryAPI\\InventoryAPI.csproj|d:\\project\\apz-pzpi-21-6-posukan-inna\\task2\\inventoryapi\\inventoryapi\\data\\inventorycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -122,7 +170,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 1181,
-          "SelectedChildIndex": 29,
+          "SelectedChildIndex": 40,
           "Children": [
             {
               "$type": "Bookmark",
@@ -150,20 +198,172 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
+              "Title": "SupplierRequestService.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SupplierRequestService.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Service\\SupplierRequestService.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SupplierRequestService.cs",
+              "RelativeToolTip": "InventoryAPI\\Service\\SupplierRequestService.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:18:20.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ISupplierRequestService.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ISupplierRequestService.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\ISupplierRequestService.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ISupplierRequestService.cs",
+              "RelativeToolTip": "InventoryAPI\\Interfaces\\ISupplierRequestService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:18:03.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UpdateStatusDTO.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\DTO\\UpdateStatusDTO.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\DTO\\UpdateStatusDTO.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\DTO\\UpdateStatusDTO.cs",
+              "RelativeToolTip": "InventoryAPI\\DTO\\UpdateStatusDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T18:06:36.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "SupplierRequestController.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\SupplierRequestController.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\SupplierRequestController.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\SupplierRequestController.cs",
+              "RelativeToolTip": "InventoryAPI\\Controllers\\SupplierRequestController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T17:58:03.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SupplierRequest.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\SupplierRequest.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Models\\SupplierRequest.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\SupplierRequest.cs",
+              "RelativeToolTip": "InventoryAPI\\Models\\SupplierRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T14:03:09.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "SaleItem.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\SaleItem.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Models\\SaleItem.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\SaleItem.cs",
+              "RelativeToolTip": "InventoryAPI\\Models\\SaleItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:35:18.481Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Sale.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Sale.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Models\\Sale.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Sale.cs",
+              "RelativeToolTip": "InventoryAPI\\Models\\Sale.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:33:18.185Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Models\\Employee.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Employee.cs",
+              "RelativeToolTip": "InventoryAPI\\Models\\Employee.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAuwAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:22:14.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "EmployeeController.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\EmployeeController.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\EmployeeController.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\EmployeeController.cs",
+              "RelativeToolTip": "InventoryAPI\\Controllers\\EmployeeController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAQwCoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:21:48.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SaleController.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\SaleController.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\SaleController.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\SaleController.cs",
+              "RelativeToolTip": "InventoryAPI\\Controllers\\SaleController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAUwCAAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:20:37.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ISaleService.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ISaleService.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\ISaleService.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ISaleService.cs",
+              "RelativeToolTip": "InventoryAPI\\Interfaces\\ISaleService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:19:46.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SaleService.cs",
+              "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SaleService.cs",
+              "RelativeDocumentMoniker": "InventoryAPI\\Service\\SaleService.cs",
+              "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SaleService.cs",
+              "RelativeToolTip": "InventoryAPI\\Service\\SaleService.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowC0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T13:18:36.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "SupplierService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SupplierService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Service\\SupplierService.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\SupplierService.cs",
               "RelativeToolTip": "InventoryAPI\\Service\\SupplierService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T13:04:31.487Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ISupplierService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ISupplierService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\ISupplierService.cs",
@@ -176,20 +376,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "StoreService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\StoreService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Service\\StoreService.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\StoreService.cs",
               "RelativeToolTip": "InventoryAPI\\Service\\StoreService.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAowCYAAAAqAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwCYAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T12:55:06.135Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 10,
               "Title": "IStoreService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\IStoreService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\IStoreService.cs",
@@ -202,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 26,
               "Title": "StoreController.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\StoreController.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\StoreController.cs",
@@ -210,12 +410,11 @@
               "RelativeToolTip": "InventoryAPI\\Controllers\\StoreController.cs",
               "ViewState": "AQIAACMAAAAAAAAAAAAswCMAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:54:07.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T12:54:07.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "ICategoryService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\ICategoryService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\ICategoryService.cs",
@@ -228,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 6,
               "Title": "CategoryService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\CategoryService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Service\\CategoryService.cs",
@@ -241,7 +440,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 33,
               "Title": "Supplier.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Supplier.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Models\\Supplier.cs",
@@ -249,12 +448,11 @@
               "RelativeToolTip": "InventoryAPI\\Models\\Supplier.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:38:10.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T12:38:10.849Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 18,
               "Title": "SupplierController.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\SupplierController.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\SupplierController.cs",
@@ -267,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 22,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\CategoryController.cs",
@@ -280,7 +478,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "IProductService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\IProductService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\IProductService.cs",
@@ -293,33 +491,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "StoreProduct.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\StoreProduct.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Models\\StoreProduct.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\StoreProduct.cs",
               "RelativeToolTip": "InventoryAPI\\Models\\StoreProduct.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:31:52.521Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T12:31:52.521Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 5,
               "Title": "ProductService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\ProductService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Service\\ProductService.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\ProductService.cs",
               "RelativeToolTip": "InventoryAPI\\Service\\ProductService.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAowAUAAAAAAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAQwEQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T12:28:17.631Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 31,
               "Title": "Product.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Product.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Models\\Product.cs",
@@ -327,12 +524,11 @@
               "RelativeToolTip": "InventoryAPI\\Models\\Product.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAcwBcAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T12:25:19.99Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T12:25:19.99Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 15,
               "Title": "ProductDTO.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\DTO\\ProductDTO.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\DTO\\ProductDTO.cs",
@@ -345,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 20,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\ProductController.cs",
@@ -358,7 +554,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 29,
               "Title": "Store.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\Store.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Models\\Store.cs",
@@ -370,7 +566,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 36,
               "Title": "InventoryContextModelSnapshot.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Migrations\\InventoryContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Migrations\\InventoryContextModelSnapshot.cs",
@@ -382,7 +578,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 37,
               "Title": "20240418112740_initial.Designer.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Migrations\\20240418112740_initial.Designer.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Migrations\\20240418112740_initial.Designer.cs",
@@ -394,7 +590,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Models\\User.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Models\\User.cs",
@@ -406,7 +602,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 7,
               "Title": "IUserService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Interfaces\\IUserService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Interfaces\\IUserService.cs",
@@ -419,7 +615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 35,
               "Title": "Password.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Tools\\Password.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Tools\\Password.cs",
@@ -431,46 +627,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 0,
               "Title": "UserService.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\UserService.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Service\\UserService.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Service\\UserService.cs",
               "RelativeToolTip": "InventoryAPI\\Service\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAA1AAAA",
+              "ViewState": "AQIAAEEAAAAAAAAAAAAwwDEAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T11:41:39.048Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 16,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Controllers\\UserController.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Controllers\\UserController.cs",
               "RelativeToolTip": "InventoryAPI\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAQwA0AAAAFAAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAowA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T11:33:09.211Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 23,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Program.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Program.cs",
               "ToolTip": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Program.cs",
               "RelativeToolTip": "InventoryAPI\\Program.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAADUAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T11:28:23.755Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 39,
               "Title": "20240418112740_initial.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Migrations\\20240418112740_initial.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Migrations\\20240418112740_initial.cs",
@@ -482,7 +678,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 38,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\appsettings.json",
               "RelativeDocumentMoniker": "InventoryAPI\\appsettings.json",
@@ -494,7 +690,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 34,
               "Title": "InventoryContext.cs",
               "DocumentMoniker": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\Data\\InventoryContext.cs",
               "RelativeDocumentMoniker": "InventoryAPI\\Data\\InventoryContext.cs",
