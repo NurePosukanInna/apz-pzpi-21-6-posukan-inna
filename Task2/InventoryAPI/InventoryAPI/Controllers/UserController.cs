@@ -1,25 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryAPI.Models;
+using InventoryAPI.Services;
 using System.Collections.Generic;
-using System.Linq;
+using InventoryAPI.Interfaces;
 
 namespace InventoryAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly InventoryContext _context;
+        private readonly IUserService _userService;
 
-        public UserController(InventoryContext context)
+        public UserController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> UserLogin([FromBody] User user)
+        {
+            return await _userService.UserLogin(user);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> UserRegistration([FromBody] User user)
+        {
+            return await _userService.UserRegistration(user);
         }
 
         [HttpGet]
-        public IEnumerable<User> Get()
+        public async Task<IActionResult> GetAllUsers()
         {
-            return _context.Users.ToList();
+            IEnumerable<User> users = await _userService.GetAllUsers();
+            return Ok(users);
         }
     }
 }
