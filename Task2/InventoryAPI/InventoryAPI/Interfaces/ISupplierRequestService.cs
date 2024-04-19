@@ -10,5 +10,7 @@ namespace InventoryAPI.Services
     {
         Task<IEnumerable<SupplierRequest>> GetAllRequests();
         Task<IActionResult> UpdateStatus(int id, UpdateStatusDto updateDto);
+        Task<IActionResult> DeleteRequest(int id);
+
     }
 }

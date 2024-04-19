@@ -281,6 +281,22 @@
   },
   {
     "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
+    "Method": "DeleteRequest",
+    "RelativePath": "api/SupplierRequest/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
     "Method": "UpdateStatus",
     "RelativePath": "api/SupplierRequest/UpdateStatus/{id}",
     "HttpMethod": "PUT",

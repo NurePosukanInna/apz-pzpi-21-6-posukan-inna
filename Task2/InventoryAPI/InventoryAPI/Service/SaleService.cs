@@ -1,7 +1,6 @@
 ﻿using InventoryAPI.Data;
 using InventoryAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace InventoryAPI.Services
 {
@@ -16,41 +15,86 @@ namespace InventoryAPI.Services
 
         public async Task<Sale> AddSale(Sale sale)
         {
-            sale.SaleDate = DateTime.UtcNow;
+            var currentTime = DateTime.UtcNow;
+            sale.SaleDate = currentTime;
 
             _context.Sales.Add(sale);
             await _context.SaveChangesAsync();
 
             foreach (var salesItem in sale.SaleItems)
             {
-                var storeProducts = await _context.StoreProducts
+                var storeProduct = await _context.StoreProducts
+                    .Include(sp => sp.Product)
                     .Where(p => p.StoreId == sale.StoreId && p.ProductId == salesItem.ProductId)
                     .FirstOrDefaultAsync();
 
-                if (storeProducts != null)
+                if (storeProduct != null)
                 {
-                    storeProducts.Quantity -= salesItem.Quantity;
+                    storeProduct.Quantity -= salesItem.Quantity;
 
-                    if (storeProducts.Quantity < storeProducts.MinQuantity)
+                    if (storeProduct.Quantity < storeProduct.MinQuantity)
                     {
+                        var orderQuantity = await CalculateOrderQuantity((int)storeProduct.ProductId);
+
+                        decimal amount = (decimal)(storeProduct.Product.Price * orderQuantity);
+
+                        decimal discount = amount * 0.2m;
+
                         var request = new SupplierRequest
                         {
-                            StoreProductId = storeProducts.StoreProductId,
-                            Quantity = storeProducts.MinQuantity - storeProducts.Quantity,
-                            TotalAmount = null, 
-                            RequestDate = DateTime.UtcNow,
-                            RequestStatus = "Pending" 
+                            StoreProductId = storeProduct.StoreProductId,
+                            Quantity = orderQuantity,
+                            TotalAmount = amount - discount,
+                           RequestDate = currentTime,
+                            RequestStatus = "Pending"
                         };
 
                         _context.SupplierRequests.Add(request);
-
                     }
+                    salesItem.Price = storeProduct.Product.Price;
                 }
             }
 
             await _context.SaveChangesAsync();
 
             return sale;
+        }
+
+        public async Task<int?> CalculateOrderQuantity(int productId)
+        {
+            var lastWeekStartDate = DateTime.UtcNow.Date.AddDays(-7);
+
+            var completedRequests = await _context.SupplierRequests
+                .Where(r => r.StoreProduct != null &&
+                            r.StoreProduct.ProductId == productId &&
+                            r.RequestStatus == "Completed" &&
+                            r.RequestDate >= lastWeekStartDate &&
+                            r.RequestDate != null)
+                .OrderByDescending(r => r.RequestDate)
+                .Take(2)
+                .ToListAsync();
+
+            if (completedRequests.Count >= 2)
+            {
+                var averageQuantity = completedRequests.Average(r => r.Quantity);
+                var orderQuantity = (int)Math.Ceiling((double)(averageQuantity * 1.2));
+                return orderQuantity;
+            }
+            else
+            {
+                var storeProduct = await _context.StoreProducts
+                    .FirstOrDefaultAsync(p => p.ProductId == productId);
+
+                if (storeProduct != null)
+                {
+                    var orderQuantity = storeProduct.MinQuantity - storeProduct.Quantity + 2;
+                    return (int)orderQuantity;
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
 
         public async Task<IEnumerable<Sale>> GetSalesByStoreId(int storeId)

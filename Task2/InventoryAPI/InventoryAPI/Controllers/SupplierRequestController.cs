@@ -32,5 +32,12 @@ namespace InventoryAPI.Controllers
 
             return await _supplierRequestService.UpdateStatus(id, updateDto);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRequest(int id)
+        {
+            var result = await _supplierRequestService.DeleteRequest(id);
+            return result;
+        }
     }
 }

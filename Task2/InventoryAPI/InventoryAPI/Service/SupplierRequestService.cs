@@ -15,6 +15,7 @@ namespace InventoryAPI.Services
         {
             _context = context;
         }
+
         public async Task<IEnumerable<SupplierRequest>> GetAllRequests()
         {
             return await _context.SupplierRequests.ToListAsync();
@@ -39,17 +40,31 @@ namespace InventoryAPI.Services
 
             if (updateDto.RequestStatus == "Completed" && oldStatus != "Completed")
             {
-                var storeProducts = _context.StoreProducts.FirstOrDefault(sp => sp.StoreProductId == request.StoreProductId);
+                var storeProduct = _context.StoreProducts.FirstOrDefault(sp => sp.StoreProductId == request.StoreProductId);
 
-                if (storeProducts != null)
+                if (storeProduct != null)
                 {
-                    storeProducts.Quantity += request.Quantity;
+                    storeProduct.Quantity += request.Quantity;
                 }
             }
 
             await _context.SaveChangesAsync();
 
             return new OkObjectResult(request);
+        }
+
+        public async Task<IActionResult> DeleteRequest(int id)
+        {
+            var request = await _context.SupplierRequests.FindAsync(id);
+            if (request == null)
+            {
+                return new BadRequestObjectResult($"Requesr with ID {id} not found.");
+            }
+
+            _context.SupplierRequests.Remove(request);
+            await _context.SaveChangesAsync();
+
+            return new OkObjectResult($"Request with ID {id} deleted successfully.");
         }
     }
 }
