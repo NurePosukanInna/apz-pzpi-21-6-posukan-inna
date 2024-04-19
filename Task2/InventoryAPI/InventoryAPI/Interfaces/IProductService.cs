@@ -10,5 +10,6 @@ namespace InventoryAPI.Services
     {
         Task<ActionResult<Product>> AddProduct(ProductDTO productDTO);
         Task<IEnumerable<Product>> GetProductsByStoreId(int storeId);
+        Task<IActionResult> DeleteProduct(int productId);
     }
 }

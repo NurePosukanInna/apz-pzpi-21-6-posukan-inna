@@ -15,6 +15,11 @@ namespace InventoryAPI.Models
         public int ProductId { get; set; }
         public string? ProductName { get; set; }
         public decimal? Price { get; set; }
+        public string? Currency { get; set; } 
+        public decimal? Volume { get; set; }
+        public string? MeasureOfUnits { get; set; } 
+        public bool? IsFresh { get; set; }
+        public DateTime? ExpiryDate { get; set; } 
         public int? CategoryId { get; set; }
         public int? SupplierId { get; set; }
 

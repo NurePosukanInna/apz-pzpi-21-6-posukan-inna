@@ -25,8 +25,18 @@ namespace InventoryAPI.Services
                     ProductName = productDTO.ProductName,
                     Price = productDTO.Price,
                     CategoryId = productDTO.CategoryId,
-                    SupplierId = productDTO.SupplierId
+                    SupplierId = productDTO.SupplierId,
+                    Currency = productDTO.Currency,
+                    Volume = productDTO.Volume,
+                    MeasureOfUnits = productDTO.MeasureOfUnits,
+                    IsFresh = productDTO.IsFresh
                 };
+
+                if (productDTO.IsFresh == true)
+                {
+                    product.ExpiryDate = productDTO.ExpiryDate;
+                }
+
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
 
@@ -55,6 +65,7 @@ namespace InventoryAPI.Services
                 var products = await _context.Products
                     .Include(p => p.StoreProducts)
                     .Where(p => p.StoreProducts.Any(ps => ps.StoreId == storeId))
+                    .Where(p => !_context.DefectiveProducts.Any(dp => dp.ProductId == p.ProductId))
                     .ToListAsync();
 
                 return products;
@@ -62,6 +73,36 @@ namespace InventoryAPI.Services
             catch (Exception ex)
             {
                 throw new Exception($"Error while retrieving products: {ex.Message}");
+            }
+        }
+
+        public async Task<IActionResult> DeleteProduct(int productId)
+        {
+            try
+            {
+                var product = await _context.Products.FindAsync(productId);
+
+                if (product == null)
+                {
+                    return new BadRequestObjectResult($"Product with ID {productId} not found.");
+                }
+
+                var relatedSaleItems = _context.SaleItems.Where(si => si.ProductId == productId);
+                var relatedStoreProducts = _context.StoreProducts.Where(sp => sp.ProductId == productId);
+
+                _context.SaleItems.RemoveRange(relatedSaleItems);
+                _context.StoreProducts.RemoveRange(relatedStoreProducts);
+
+
+                _context.Products.Remove(product);
+
+                await _context.SaveChangesAsync();
+
+                return new OkObjectResult($"Product with ID {productId} deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult($"Error while deleting product: {ex.Message}");
             }
         }
     }

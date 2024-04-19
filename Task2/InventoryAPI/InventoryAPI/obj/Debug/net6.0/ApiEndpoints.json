@@ -26,6 +26,26 @@
     ]
   },
   {
+    "ContainingType": "InventoryAPI.Controllers.DefectiveProductsController",
+    "Method": "GetAllDefectiveProducts",
+    "RelativePath": "api/DefectiveProducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.DefectiveProductsController",
+    "Method": "CheckAndMoveExpiredProducts",
+    "RelativePath": "api/DefectiveProducts/CheckProduct",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "InventoryAPI.Controllers.EmployeeController",
     "Method": "AddEmployee",
     "RelativePath": "api/Employee",
@@ -50,6 +70,22 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Product/{productId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   },
   {
     "ContainingType": "InventoryAPI.Controllers.ProductController",

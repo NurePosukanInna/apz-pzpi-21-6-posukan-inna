@@ -46,6 +46,9 @@ builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<ISupplierRequestService, SupplierRequestService>();
 
 
+builder.Services.AddHostedService<ExpiredProductChecker>();
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

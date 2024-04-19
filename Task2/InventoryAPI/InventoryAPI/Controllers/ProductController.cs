@@ -47,5 +47,19 @@ namespace InventoryAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error while retrieving products: {ex.Message}");
             }
         }
+
+        [HttpDelete("{productId}")]
+        public async Task<IActionResult> DeleteProduct(int productId)
+        {
+            try
+            {
+                var result = await _productService.DeleteProduct(productId);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error while deleting product: {ex.Message}");
+            }
+        }
     }
 }

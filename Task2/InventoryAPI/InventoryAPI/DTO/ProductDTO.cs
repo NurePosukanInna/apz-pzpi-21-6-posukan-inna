@@ -9,5 +9,10 @@
         public int StoreId { get; set; }
         public int Quantity { get; set; }
         public int MinQuantity { get; set; }
+        public string Currency { get; set; } 
+        public decimal? Volume { get; set; } 
+        public string MeasureOfUnits { get; set; } 
+        public bool IsFresh { get; set; }
+        public DateTime? ExpiryDate { get; set; } 
     }
 }
