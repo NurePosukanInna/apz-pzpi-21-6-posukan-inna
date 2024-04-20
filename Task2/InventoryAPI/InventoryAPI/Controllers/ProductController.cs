@@ -1,11 +1,7 @@
 ﻿using InventoryAPI.DTOs;
 using InventoryAPI.Models;
 using InventoryAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace InventoryAPI.Controllers
 {
@@ -61,5 +57,20 @@ namespace InventoryAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error while deleting product: {ex.Message}");
             }
         }
+
+        [HttpPut("{productId}")]
+        public async Task<IActionResult> UpdateProduct(int productId, ProductDTO productDTO)
+        {
+            try
+            {
+                var result = await _productService.UpdateProduct(productId, productDTO);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error while updating product: {ex.Message}");
+            }
+        }
+
     }
 }

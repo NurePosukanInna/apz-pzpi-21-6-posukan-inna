@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryAPI.DTO;
+using InventoryAPI.Models;
 using InventoryAPI.Services;
+
 
 namespace InventoryAPI.Controllers
 {
@@ -16,28 +18,45 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllRequests()
+        public async Task<ActionResult<IEnumerable<SupplierRequest>>> GetAllRequests()
         {
-            var requests = await _supplierRequestService.GetAllRequests();
-            return Ok(requests);
+            try
+            {
+                var requests = await _supplierRequestService.GetAllRequests();
+                return Ok(requests);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while retrieving supplier requests: {ex.Message}");
+            }
         }
 
-        [HttpPut("UpdateStatus/{id}")]
-        public async Task<IActionResult> UpdateStatus(int id, [FromBody] UpdateStatusDto updateDto)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateRequest(int id, UpdateRequestDto updateDto)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                var result = await _supplierRequestService.UpdateRequest(id, updateDto);
+                return result;
             }
-
-            return await _supplierRequestService.UpdateStatus(id, updateDto);
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while updating supplier request: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRequest(int id)
         {
-            var result = await _supplierRequestService.DeleteRequest(id);
-            return result;
+            try
+            {
+                var result = await _supplierRequestService.DeleteRequest(id);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while deleting supplier request: {ex.Message}");
+            }
         }
     }
 }

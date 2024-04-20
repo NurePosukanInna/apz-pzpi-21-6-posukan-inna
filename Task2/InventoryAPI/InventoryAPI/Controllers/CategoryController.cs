@@ -1,8 +1,8 @@
 ﻿using InventoryAPI.Models;
 using InventoryAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InventoryAPI.Controllers
@@ -18,7 +18,7 @@ namespace InventoryAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpPost]
+        [HttpPost("AddCategory")]
         public async Task<ActionResult<Category>> AddCategory(Category category)
         {
             try
@@ -28,8 +28,51 @@ namespace InventoryAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding category: {ex.Message}");
+                return StatusCode(500, $"Error while adding category: {ex.Message}");
             }
         }
+
+        [HttpGet("GetAllCategories")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
+        {
+            try
+            {
+                var categories = await _categoryService.GetAllCategories();
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while retrieving categories: {ex.Message}");
+            }
+        }
+
+        [HttpGet("GetProductsByCategory/{categoryId}")]
+        public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
+        {
+            try
+            {
+                var products = await _categoryService.GetProductsByCategory(categoryId);
+                return Ok(products);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while retrieving products by category: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("DeleteCategory/{categoryId}")]
+        public async Task<IActionResult> DeleteCategory(int categoryId)
+        {
+            try
+            {
+                var result = await _categoryService.DeleteCategory(categoryId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error while deleting category: {ex.Message}");
+            }
+        }
+
     }
 }

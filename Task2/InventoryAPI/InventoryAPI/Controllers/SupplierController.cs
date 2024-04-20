@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using InventoryAPI.Interfaces;
 using InventoryAPI.Models;
-using InventoryAPI.Services;
-using System;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace InventoryAPI.Controllers
 {
@@ -18,14 +16,9 @@ namespace InventoryAPI.Controllers
             _supplierService = supplierService;
         }
 
-        [HttpPost]
+        [HttpPost("AddSupplier")]
         public async Task<ActionResult<Supplier>> AddSupplier(Supplier supplier)
         {
-            if (supplier == null)
-            {
-                return BadRequest("Supplier data is missing.");
-            }
-
             try
             {
                 var addedSupplier = await _supplierService.AddSupplier(supplier);
@@ -34,6 +27,38 @@ namespace InventoryAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error adding supplier: {ex.Message}");
+            }
+        }
+
+        [HttpGet("GetAllSuppliers")]
+        public async Task<ActionResult<IEnumerable<Supplier>>> GetAllSuppliers()
+        {
+            try
+            {
+                var suppliers = await _supplierService.GetAllSuppliers();
+                return Ok(suppliers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving suppliers: {ex.Message}");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSupplier(int id)
+        {
+            try
+            {
+                var result = await _supplierService.DeleteSupplier(id);
+                if (!result)
+                {
+                    return NotFound($"Supplier with ID {id} not found.");
+                }
+                return Ok($"Supplier with ID {id} deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error deleting supplier: {ex.Message}");
             }
         }
     }

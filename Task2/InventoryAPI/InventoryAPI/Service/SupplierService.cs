@@ -1,7 +1,9 @@
 ﻿using InventoryAPI.Data;
 using InventoryAPI.Interfaces;
 using InventoryAPI.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace InventoryAPI.Services
@@ -26,6 +28,40 @@ namespace InventoryAPI.Services
             catch (Exception ex)
             {
                 throw new Exception($"Error adding supplier: {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<Supplier>> GetAllSuppliers()
+        {
+            try
+            {
+                var suppliers = await _context.Suppliers.ToListAsync();
+                return suppliers;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving suppliers: {ex.Message}");
+            }
+        }
+
+        public async Task<bool> DeleteSupplier(int id)
+        {
+            try
+            {
+                var supplier = await _context.Suppliers.FindAsync(id);
+                if (supplier == null)
+                {
+                    return false;
+                }
+
+                _context.Suppliers.Remove(supplier);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting supplier: {ex.Message}");
             }
         }
     }

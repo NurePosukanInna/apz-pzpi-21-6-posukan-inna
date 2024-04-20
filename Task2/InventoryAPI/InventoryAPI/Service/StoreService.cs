@@ -45,6 +45,28 @@ namespace InventoryAPI.Services
             }
         }
 
+        public async Task<Store> UpdateStore(int storeId, Store updatedStore)
+        {
+            try
+            {
+                var store = await _context.Stores.FindAsync(storeId);
+                if (store == null)
+                {
+                    return null; 
+                }
 
+                store.StoreName = updatedStore.StoreName;
+                store.Address = updatedStore.Address;
+                store.UserId = updatedStore.UserId;
+
+                await _context.SaveChangesAsync();
+
+                return store;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating store: {ex.Message}");
+            }
+        }
     }
 }

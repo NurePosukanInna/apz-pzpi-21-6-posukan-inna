@@ -9,7 +9,7 @@ namespace InventoryAPI.Services
     public interface ISupplierRequestService
     {
         Task<IEnumerable<SupplierRequest>> GetAllRequests();
-        Task<IActionResult> UpdateStatus(int id, UpdateStatusDto updateDto);
+        Task<IActionResult> UpdateRequest(int id, UpdateRequestDto updateDto);
         Task<IActionResult> DeleteRequest(int id);
 
     }

@@ -105,5 +105,44 @@ namespace InventoryAPI.Services
                 return new BadRequestObjectResult($"Error while deleting product: {ex.Message}");
             }
         }
+        public async Task<IActionResult> UpdateProduct(int productId, ProductDTO productDTO)
+        {
+            try
+            {
+                var product = await _context.Products.FindAsync(productId);
+
+                if (product == null)
+                {
+                    return new BadRequestObjectResult($"Product with ID {productId} not found.");
+                }
+
+                product.ProductName = productDTO.ProductName;
+                product.Price = productDTO.Price;
+                product.CategoryId = productDTO.CategoryId;
+                product.SupplierId = productDTO.SupplierId;
+                product.Currency = productDTO.Currency;
+                product.Volume = productDTO.Volume;
+                product.MeasureOfUnits = productDTO.MeasureOfUnits;
+                product.IsFresh = productDTO.IsFresh;
+
+                if (productDTO.IsFresh == true)
+                {
+                    product.ExpiryDate = productDTO.ExpiryDate;
+                }
+                else
+                {
+                    product.ExpiryDate = null;
+                }
+
+                await _context.SaveChangesAsync();
+
+                return new OkObjectResult($"Product with ID {productId} updated successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestObjectResult($"Error while updating product: {ex.Message}");
+            }
+        }
+
     }
 }
