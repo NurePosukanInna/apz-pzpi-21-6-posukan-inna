@@ -44,7 +44,9 @@ builder.Services.AddScoped<IStoreService, StoreService>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<ISupplierRequestService, SupplierRequestService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 
 builder.Services.AddHostedService<ExpiredProductChecker>();
 
