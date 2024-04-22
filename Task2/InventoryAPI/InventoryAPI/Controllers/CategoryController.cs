@@ -1,9 +1,7 @@
 ﻿using InventoryAPI.Models;
 using InventoryAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace InventoryAPI.Controllers
 {

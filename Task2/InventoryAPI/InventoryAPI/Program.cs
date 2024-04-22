@@ -1,6 +1,7 @@
 using InventoryAPI.Data;
 using InventoryAPI.Interfaces;
 using InventoryAPI.Models;
+using InventoryAPI.Service;
 using InventoryAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -45,11 +46,10 @@ builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
 builder.Services.AddScoped<ISupplierRequestService, SupplierRequestService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<ISensorService, SensorService>();
 
 builder.Services.AddHostedService<ExpiredProductChecker>();
-
 
 var app = builder.Build();
 

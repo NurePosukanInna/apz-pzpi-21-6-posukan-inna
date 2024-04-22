@@ -348,6 +348,38 @@
     ]
   },
   {
+    "ContainingType": "InventoryAPI.Controllers.SensorController",
+    "Method": "AddSensor",
+    "RelativePath": "api/Sensor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sensor",
+        "Type": "InventoryAPI.Models.Sensor",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SensorController",
+    "Method": "DeleteSensor",
+    "RelativePath": "api/Sensor/{sensorId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sensorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "InventoryAPI.Controllers.StoreController",
     "Method": "AddStore",
     "RelativePath": "api/Store",
