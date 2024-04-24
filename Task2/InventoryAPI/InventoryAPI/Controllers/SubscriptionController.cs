@@ -32,7 +32,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpPost("subscriptionType")]
+        [HttpPost("addType")]
         public async Task<ActionResult<SubscriptionType>> AddSubscriptionType(SubscriptionType subscriptionType)
         {
             try
@@ -46,7 +46,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpPost("{userId}/subscription")]
+        [HttpPost("{userId}")]
         public async Task<ActionResult<Subscription>> AddSubscriptionToUser(int userId, Subscription subscription)
         {
             try
@@ -64,7 +64,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpGet("{userId}/activeSubscriptions")]
+        [HttpGet("{userId}")]
         public async Task<ActionResult<IEnumerable<Subscription>>> GetActiveSubscriptionsForOwner(int userId)
         {
             try

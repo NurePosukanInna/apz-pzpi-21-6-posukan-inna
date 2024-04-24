@@ -11,6 +11,7 @@ namespace InventoryAPI.Models
         public decimal? TotalAmount { get; set; }
         public DateTime? RequestDate { get; set; }
         public string? RequestStatus { get; set; }
+        public DateTime? DeliveryDate { get; set; }
 
         public virtual StoreProduct? StoreProduct { get; set; }
     }

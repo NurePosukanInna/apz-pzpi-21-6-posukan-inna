@@ -35,7 +35,7 @@ namespace InventoryAPI.Controllers
         }
 
 
-        [HttpGet("GetSalesByStoreId/{storeId}")]
+        [HttpGet("{storeId}")]
         public async Task<ActionResult<IEnumerable<Sale>>> GetSalesByStoreId(int storeId)
         {
             try

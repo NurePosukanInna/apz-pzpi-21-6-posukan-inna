@@ -40,12 +40,14 @@ namespace InventoryAPI.Services
 
                         decimal discount = amount * 0.2m;
 
+                        decimal totalAmount = amount - discount;
+
                         var request = new SupplierRequest
                         {
                             StoreProductId = storeProduct.StoreProductId,
                             Quantity = orderQuantity,
-                            TotalAmount = amount - discount,
-                           RequestDate = currentTime,
+                            TotalAmount = totalAmount, 
+                            RequestDate = currentTime,
                             RequestStatus = "Pending"
                         };
 

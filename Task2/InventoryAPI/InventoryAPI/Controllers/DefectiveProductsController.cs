@@ -31,37 +31,6 @@ namespace InventoryAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error while retrieving defective products: {ex.Message}");
             }
         }
-
-        [HttpPost("CheckProduct")]
-        public IActionResult CheckAndMoveExpiredProducts()
-        {
-            try
-            {
-                var expiredProducts = _context.Products
-                    .Where(p => p.ExpiryDate.HasValue && p.ExpiryDate < DateTime.Now)
-                    .ToList();
-
-                foreach (var product in expiredProducts)
-                {
-                    var defectiveProduct = new DefectiveProduct
-                    {
-                        ProductId = product.ProductId,
-                        Reason = "Expired",
-                        DateDetected = DateTime.Now
-                    };
-                    _context.DefectiveProducts.Add(defectiveProduct);
-                }
-
-                _context.SaveChanges();
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error while retrieving defective products: {ex.Message}");
-            }
-        }
-
     }
 }
 

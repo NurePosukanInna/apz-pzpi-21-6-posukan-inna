@@ -27,6 +27,7 @@ namespace InventoryAPI.Services
             try
             {
                 string hashedPassword = Password.hashPassword(user.Password);
+
                 var dbUser = await _context.Users
                     .Where(u => u.Email == user.Email && u.Password == hashedPassword)
                     .Select(u => new
@@ -38,21 +39,47 @@ namespace InventoryAPI.Services
 
                 if (dbUser == null)
                 {
-                    return new BadRequestObjectResult("Email or password is incorrect");
+                    var dbEmployee = await _context.Employees
+                        .Where(e => e.Email == user.Email && e.Password == hashedPassword)
+                        .Select(e => new
+                        {
+                            e.EmployeeId,
+                            e.Email,
+                        })
+                        .FirstOrDefaultAsync();
+
+                    if (dbEmployee == null)
+                    {
+                        return new BadRequestObjectResult("Invalid email or password");
+                    }
+
+                    List<Claim> authClaims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Email, dbEmployee.Email),
+                        new Claim("employeeId", dbEmployee.EmployeeId.ToString()),
+                    };
+
+                    var token = GenerateToken(authClaims);
+
+                    return new OkObjectResult(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(token),
+                        expiration = token.ValidTo
+                    });
                 }
 
-                List<Claim> authClaims = new List<Claim>
+                List<Claim> userAuthClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, dbUser.Email),
                     new Claim("userId", dbUser.UserId.ToString()),
                 };
 
-                var token = GenerateToken(authClaims);
+                var userToken = GenerateToken(userAuthClaims);
 
                 return new OkObjectResult(new
                 {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    token = new JwtSecurityTokenHandler().WriteToken(userToken),
+                    expiration = userToken.ValidTo
                 });
             }
             catch (Exception ex)
@@ -60,6 +87,7 @@ namespace InventoryAPI.Services
                 return new BadRequestObjectResult(ex.Message);
             }
         }
+
 
         public async Task<IActionResult> UserRegistration(User user)
         {
@@ -82,6 +110,7 @@ namespace InventoryAPI.Services
                 return new BadRequestObjectResult(ex.Message);
             }
         }
+
         public async Task<IEnumerable<User>> GetAllUsers()
         {
             var users = await _context.Users.ToListAsync();

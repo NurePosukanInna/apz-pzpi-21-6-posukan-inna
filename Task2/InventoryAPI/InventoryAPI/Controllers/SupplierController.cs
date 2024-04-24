@@ -16,7 +16,7 @@ namespace InventoryAPI.Controllers
             _supplierService = supplierService;
         }
 
-        [HttpPost("AddSupplier")]
+        [HttpPost]
         public async Task<ActionResult<Supplier>> AddSupplier(Supplier supplier)
         {
             try
@@ -30,7 +30,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpGet("GetAllSuppliers")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Supplier>>> GetAllSuppliers()
         {
             try

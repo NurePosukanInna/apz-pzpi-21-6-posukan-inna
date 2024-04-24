@@ -16,7 +16,7 @@ namespace InventoryAPI.Controllers
             _productService = productService;
         }
 
-        [HttpPost("AddProduct")]
+        [HttpPost]
         public async Task<ActionResult<Product>> AddProduct(ProductDTO productDTO)
         {
             try
@@ -30,7 +30,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpGet("GetProductsByStoreId/{storeId}")]
+        [HttpGet("{storeId}")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByStoreId(int storeId)
         {
             try

@@ -16,7 +16,7 @@ namespace InventoryAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpPost("AddCategory")]
+        [HttpPost]
         public async Task<ActionResult<Category>> AddCategory(Category category)
         {
             try
@@ -30,7 +30,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpGet("GetAllCategories")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetAllCategories()
         {
             try
@@ -44,7 +44,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpGet("GetProductsByCategory/{categoryId}")]
+        [HttpGet("{categoryId}")]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductsByCategory(int categoryId)
         {
             try
@@ -58,7 +58,7 @@ namespace InventoryAPI.Controllers
             }
         }
 
-        [HttpDelete("DeleteCategory/{categoryId}")]
+        [HttpDelete("{categoryId}")]
         public async Task<IActionResult> DeleteCategory(int categoryId)
         {
             try

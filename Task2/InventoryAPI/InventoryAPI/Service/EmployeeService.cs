@@ -1,7 +1,7 @@
 ﻿using InventoryAPI.Models;
 using InventoryAPI.Data;
 using Microsoft.EntityFrameworkCore;
-
+using InventoryAPI.Tools;
 
 namespace InventoryAPI.Services
 {
@@ -23,6 +23,7 @@ namespace InventoryAPI.Services
 
             try
             {
+                employee.Password = Password.hashPassword(employee.Password);
                 _context.Employees.Add(employee);
                 await _context.SaveChangesAsync();
                 return employee;
@@ -40,13 +41,13 @@ namespace InventoryAPI.Services
                 var employee = await _context.Employees.FindAsync(id);
                 if (employee == null)
                 {
-                    return false; 
+                    return false;
                 }
 
                 _context.Employees.Remove(employee);
                 await _context.SaveChangesAsync();
 
-                return true; 
+                return true;
             }
             catch (Exception ex)
             {
@@ -82,7 +83,7 @@ namespace InventoryAPI.Services
                 var employee = await _context.Employees.FindAsync(id);
                 if (employee == null)
                 {
-                    return null; 
+                    return null;
                 }
 
                 employee.FirstName = employeeData.FirstName;
