@@ -36,11 +36,17 @@ namespace InventoryAPI.Services
                 return new BadRequestObjectResult("The status cannot be updated because the order has already been completed.");
             }
 
-            request.Quantity = updateDto.Quantity;
+            if (updateDto.Quantity != 0)
+            {
+                request.Quantity = updateDto.Quantity;
+            }
+
             request.RequestStatus = updateDto.RequestStatus;
 
             if (updateDto.RequestStatus == "Completed" && oldStatus != "Completed")
             {
+                request.DeliveryDate = DateTime.Now;
+
                 var storeProduct = await _context.StoreProducts.FirstOrDefaultAsync(sp => sp.StoreProductId == request.StoreProductId);
 
                 if (storeProduct != null)
