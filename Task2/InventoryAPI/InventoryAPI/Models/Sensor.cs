@@ -8,6 +8,8 @@ namespace InventoryAPI.Models
         public int SensorId { get; set; }
         public int? StoreId { get; set; }
         public decimal? Temperature { get; set; }
+        public decimal? Humidity { get; set; } 
+
         public DateTime? Timestamp { get; set; }
 
         public virtual Store? Store { get; set; }

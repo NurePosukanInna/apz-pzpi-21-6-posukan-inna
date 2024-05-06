@@ -1,7 +1,10 @@
 ﻿using InventoryAPI.Data;
+using InventoryAPI.DTO;
 using InventoryAPI.Models;
 using MailKit.Security;
+using Microsoft.EntityFrameworkCore;
 using MimeKit;
+using NuGet.Protocol.Plugins;
 
 namespace InventoryAPI.Service
 {
@@ -35,6 +38,42 @@ namespace InventoryAPI.Service
                 throw new Exception($"Error adding sensor: {ex.Message}");
             }
         }
+        public async Task<bool> UpdateSensor(int sensorId, SensorUpdateDto sensorUpdateDto)
+        {
+            try
+            {
+                var existingSensor = await _context.Sensors.FirstOrDefaultAsync(s => s.SensorId == sensorId);
+                if (existingSensor == null)
+                {
+                    return false;
+                }
+
+                if (sensorUpdateDto.Temperature != null)
+                {
+                    existingSensor.Temperature = sensorUpdateDto.Temperature.Value;
+                }
+                if (sensorUpdateDto.Humidity != null)
+                {
+                    existingSensor.Humidity = sensorUpdateDto.Humidity.Value;
+                }
+
+                existingSensor.Timestamp = DateTime.Now;
+
+                if (existingSensor.Temperature < 15 || existingSensor.Temperature > 25 || existingSensor.Humidity < 40 || existingSensor.Humidity > 60)
+                {
+                    await SendEmailNotification(existingSensor);
+                    _context.Sensors.Update(existingSensor);
+                    await _context.SaveChangesAsync();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error updating sensor: {ex.Message}");
+            }
+        }
+
 
         public async Task<bool> DeleteSensor(int sensorId)
         {
@@ -86,7 +125,10 @@ namespace InventoryAPI.Service
                 throw new Exception($"Error sending email notification: {ex.Message}");
             }
         }
-
+        public async Task<List<Sensor>> GetAllSensors()
+        {
+            return await _context.Sensors.ToListAsync();
+        }
         private (string, string) GetEmailSettings()
         {
             var emailSettings = _configuration.GetSection("EmailSettings");

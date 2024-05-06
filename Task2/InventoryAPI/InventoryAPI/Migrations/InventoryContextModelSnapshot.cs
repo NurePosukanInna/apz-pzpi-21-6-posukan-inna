@@ -225,6 +225,9 @@ namespace InventoryAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SensorId"), 1L, 1);
 
+                    b.Property<decimal?>("Humidity")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int?>("StoreId")
                         .HasColumnType("int")
                         .HasColumnName("Store_ID");

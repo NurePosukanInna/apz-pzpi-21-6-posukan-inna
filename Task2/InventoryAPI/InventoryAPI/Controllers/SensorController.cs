@@ -1,4 +1,5 @@
-﻿using InventoryAPI.Models;
+﻿using InventoryAPI.DTO;
+using InventoryAPI.Models;
 using InventoryAPI.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,6 +32,26 @@ namespace InventoryAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        [HttpPut("{sensorId}")]
+        public async Task<IActionResult> UpdateSensor(int sensorId, [FromBody] SensorUpdateDto sensorUpdateDto)
+        {
+            try
+            {
+                var success = await _sensorService.UpdateSensor(sensorId, sensorUpdateDto);
+                if (success)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
         [HttpDelete("{sensorId}")]
         public async Task<IActionResult> DeleteSensor(int sensorId)
@@ -52,5 +73,19 @@ namespace InventoryAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllSensors()
+        {
+            try
+            {
+                var sensors = await _sensorService.GetAllSensors();
+                return Ok(sensors);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
     }
 }

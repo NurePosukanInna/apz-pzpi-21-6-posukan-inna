@@ -365,6 +365,37 @@
   },
   {
     "ContainingType": "InventoryAPI.Controllers.SensorController",
+    "Method": "GetAllSensors",
+    "RelativePath": "api/Sensor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SensorController",
+    "Method": "UpdateSensor",
+    "RelativePath": "api/Sensor/{sensorId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sensorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sensorUpdateDto",
+        "Type": "InventoryAPI.DTO.SensorUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SensorController",
     "Method": "DeleteSensor",
     "RelativePath": "api/Sensor/{sensorId}",
     "HttpMethod": "DELETE",
