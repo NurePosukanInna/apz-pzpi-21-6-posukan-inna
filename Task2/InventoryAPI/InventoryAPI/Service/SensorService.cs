@@ -57,20 +57,26 @@ namespace InventoryAPI.Service
                     existingSensor.Humidity = sensorUpdateDto.Humidity.Value;
                 }
 
-                existingSensor.Timestamp = DateTime.Now;
+                existingSensor.Timestamp = DateTime.UtcNow;
 
-                if (existingSensor.Temperature < 15 || existingSensor.Temperature > 25 || existingSensor.Humidity < 40 || existingSensor.Humidity > 60)
+                bool needsNotification = existingSensor.Temperature < 15 ||
+                                          existingSensor.Temperature > 25 ||
+                                          existingSensor.Humidity < 40 ||
+                                          existingSensor.Humidity > 60;
+
+                if (needsNotification)
                 {
                     await SendEmailNotification(existingSensor);
-                    _context.Sensors.Update(existingSensor);
-                    await _context.SaveChangesAsync();
                 }
+
+                _context.Sensors.Update(existingSensor);
+                await _context.SaveChangesAsync();
 
                 return true;
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error updating sensor: {ex.Message}");
+                return false;
             }
         }
 
