@@ -38,7 +38,7 @@ const Auth = () => {
       window.alert(`${isLoginMode ? 'Login' : 'Registration'} successful`);
 
       if (isLoginMode) {
-        window.location.replace('/');
+        window.location.replace('/dashboard');
       } else {
         window.location.replace('/login');
       }

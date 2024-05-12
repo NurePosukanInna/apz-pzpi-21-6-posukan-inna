@@ -1,0 +1,34 @@
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100px;
+    background-color: #034b33;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+  }
+  
+  .menu-item {
+    margin-bottom: 5px;
+    position: relative;
+  }
+  
+  .menu-item i {
+    font-size: 25px;
+    margin: 15px;
+    color: rgb(204, 253, 245);
+  }
+  
+  .logo-image{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 80px;
+  }
