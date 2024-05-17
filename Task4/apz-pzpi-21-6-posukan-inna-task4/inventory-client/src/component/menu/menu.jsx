@@ -26,10 +26,7 @@ function Menu() {
           <Link to="/shop"><i className="fa fa-shop"></i></Link>
         </li>
         <li className="menu-item">
-          <Link to="/sail"><i className="fa fa-cash-register"></i></Link>
-        </li>
-        <li className="menu-item">
-          <Link to="/users"><i className="fa fa-user-group"></i></Link>
+          <Link to="/employee"><i className="fa fa-user-group"></i></Link>
         </li>
         <li className="menu-item"><i className="fa fa-bell"></i></li>
       </ul>

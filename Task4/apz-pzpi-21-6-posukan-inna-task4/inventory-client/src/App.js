@@ -6,6 +6,7 @@ import Dashboard from './pages/dashboard';
 import Shop from './pages/shop';
 import Product from './pages/product';
 import Auth from './pages/auth';
+import Employee from './pages/employee';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/shop' element={<Shop/>} />
           <Route path="/shop/:shopId" element={<Product />} />
+          <Route path='/employee' element={<Employee/>} />
         </Routes>
       </Router>
     </div>

@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetchCategories } from '../../http/categoryApi';
 import { fetchSuppliers } from '../../http/supplierApi';
+
 function UpdateProductModal({ show, handleClose, formData = {}, handleChange, handleSubmit, availableCurrencies }) {
   const [prevFormData, setPrevFormData] = useState({});
   const [categories, setCategories] = useState([]);
@@ -35,7 +36,7 @@ function UpdateProductModal({ show, handleClose, formData = {}, handleChange, ha
     setPrevFormData(formData);
   }, [formData]);
 
-  const mergedFormData = { ...prevFormData, ...formData };
+  const mergedFormData = { ...prevFormData, ...formData, categoryId: formData.categoryId || '' };
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -75,13 +76,12 @@ function UpdateProductModal({ show, handleClose, formData = {}, handleChange, ha
           <div className="form-group">
             <label>Expiry Date:</label>
             <input 
-  type="date" 
-  className="form-control" 
-  name="expiryDate" 
-  value={mergedFormData.expiryDate || ''} 
-  onChange={handleChange} 
-/>
-
+              type="date" 
+              className="form-control" 
+              name="expiryDate" 
+              value={mergedFormData.expiryDate || ''} 
+              onChange={handleChange} 
+            />
           </div> 
           <div className="form-group">
             <label>Category:</label>
