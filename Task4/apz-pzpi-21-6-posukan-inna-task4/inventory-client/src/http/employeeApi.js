@@ -42,3 +42,12 @@ export async function deleteEmployee(id) {
     }
   }
   
+  export async function fetchStoresByEmployeeId(employeeId) {
+    try {
+      const response = await axios.get(`${BASE_URL}/Employee/${employeeId}/stores`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching stores for employee:', error);
+      throw error; 
+    }
+  }

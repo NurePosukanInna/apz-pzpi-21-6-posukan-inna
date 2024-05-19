@@ -10,3 +10,12 @@ export async function addSale(saleData) {
     throw error;
   }
 }
+export async function getSalesByStoreId(storeId) {
+  try {
+    const response = await axios.get(`${BASE_URL}/Sale/${storeId}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching sales by store id:', error);
+    throw error;
+  }
+}

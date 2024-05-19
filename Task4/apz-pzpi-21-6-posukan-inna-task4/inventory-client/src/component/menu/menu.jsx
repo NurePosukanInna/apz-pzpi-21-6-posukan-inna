@@ -28,8 +28,9 @@ function Menu() {
         <li className="menu-item">
           <Link to="/employee"><i className="fa fa-user-group"></i></Link>
         </li>
-        <li className="menu-item"><i className="fa fa-bell"></i></li>
-      </ul>
+        <li className="menu-item">
+          <Link to="/order"><i className="fa fa-car"></i></Link>
+        </li>      </ul>
     </div>
   );
 }

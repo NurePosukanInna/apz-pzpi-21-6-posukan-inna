@@ -7,6 +7,9 @@ import Shop from './pages/shop';
 import Product from './pages/product';
 import Auth from './pages/auth';
 import Employee from './pages/employee';
+import Defective from './pages/defective';
+import Order from './pages/order';
+import Sale from './pages/sale';
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
           <Route path='/shop' element={<Shop/>} />
           <Route path="/shop/:shopId" element={<Product />} />
           <Route path='/employee' element={<Employee/>} />
+          <Route path='/defective' element={<Defective/>} />
+          <Route path='/order' element={<Order/>} />
+          <Route path='/sale' element={<Sale/>} />
         </Routes>
       </Router>
     </div>

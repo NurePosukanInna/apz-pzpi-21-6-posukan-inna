@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Menu from '../component/menu/menu';
 import { fetchStoreById } from '../http/shopApi';
 import { fetchAllProducts, deleteProduct, fetchCurrencies, updateProduct, addProduct } from '../http/productApi';
@@ -11,15 +11,14 @@ import { useAuth } from '../context/authContext';
 
 function Product() {
   const { shopId } = useParams();
-  const { userId } = useAuth();
-
+  const { userId, position, employeeId } = useAuth();
+  const [storeId, setStoreId] = useState(null); 
   const { selectedProducts, addSelectedProduct, removeProductFromContext, clearSelectedProducts } = useProductContext();
   const [store, setStore] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [searchQuery, setSearchQuery] = useState(''); 
-
   const [formData, setFormData] = useState({
     ProductName: '',
     Price: '',
@@ -36,13 +35,18 @@ function Product() {
   const [quantities, setQuantities] = useState({});
 
   useEffect(() => {
+    localStorage.setItem('shopId', shopId);
+    setStoreId(shopId);
+  }, [shopId]);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
+        setStoreId(shopId); 
         const storeData = await fetchStoreById(shopId);
         setStore(storeData);
         const products = await fetchAllProducts(shopId);
         setProducts(products || []);
-
         const currencies = await fetchCurrencies();
         setAvailableCurrencies(currencies || []);
       } catch (error) {
@@ -82,7 +86,7 @@ function Product() {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
     const finalValue = name === 'isFresh' ? !formData.isFresh : newValue;
-    const updatedValue = name === 'quantity' ? parseFloat(newValue) + 1 : finalValue;
+    const updatedValue = name === 'quantity' ? parseFloat(newValue) : finalValue;
     setFormData(prevState => ({
       ...prevState,
       [name]: name === 'expiryDate' ? (newValue === '' ? null : new Date(newValue)) : updatedValue,
@@ -116,7 +120,6 @@ function Product() {
         quantity: formData.quantity,
         minQuantity: formData.minQuantity
       };
-
       await updateProduct(selectedProductId, updatedProductData);
       const updatedProducts = await fetchAllProducts(shopId);
       setProducts(updatedProducts || []);
@@ -125,24 +128,31 @@ function Product() {
       console.error('Error updating product:', error);
     }
   };
-
   const handleAddSale = async () => {
     try {
-      const saleItems = selectedProducts.filter(product => quantities[product.productId] > 0).map(product => ({
+      const saleItems = selectedProducts.filter(product => {
+        const quantity = quantities[product.productId] || 0;
+        return quantity > 0;
+      }).map(product => ({
         productId: product.productId,
         quantity: quantities[product.productId]
       }));
-  
+      
       if (saleItems.length === 0) {
         alert('No products available for sale.');
         return; 
       }
   
-      const saleData = {
-        employeeId: userId,
+      let saleData = {
         storeId: shopId,
         saleItems: saleItems
       };
+  
+      if (position === 'Cashier') {
+        saleData.employeeId = employeeId;
+      } else {
+        saleData.userId = userId;
+      }
   
       await addSale(saleData);
       alert('Sale added successfully');
@@ -154,14 +164,14 @@ function Product() {
     }
   };
   
+  
   const handleQuantityChange = (productId, newQuantity) => {
     setQuantities(prevState => ({
       ...prevState,
       [productId]: newQuantity.trim() === '' ? '' : parseFloat(newQuantity)
     }));
   };
-  
-  
+
   const handleDeleteProduct = async (productId) => {
     try {
       await deleteProduct(productId);
@@ -171,6 +181,7 @@ function Product() {
       console.error('Error deleting product:', error);
     }
   };
+
   const calculateTotalPrice = () => {
     let total = 0;
     selectedProducts.forEach(product => {
@@ -179,10 +190,11 @@ function Product() {
     });
     setTotalPrice(total);
   };
+
   useEffect(() => {
     calculateTotalPrice();
   }, [selectedProducts, quantities]);
-  
+
   const filteredProducts = products.filter(product =>
     Object.values(product).some(value => {
       if (typeof value === 'string') {
@@ -193,7 +205,7 @@ function Product() {
       return false;
     })
   );
-  
+
   return (
     <div className="product-page">
       <div className="product-menu">
@@ -223,15 +235,19 @@ function Product() {
         <hr />
         <div className="action" style={{ marginBottom: '20px', marginTop: '20px' }}>
           <button className="btn btn-success" onClick={() => handleAddModalOpen()}>Add Product</button>
+          <span style={{ marginRight: '10px' }}></span>
+          <Link to="/defective" className="btn btn-success">View Defective Products</Link>
+          <span style={{ marginRight: '10px' }}></span>
+          <Link to="/sale" className="btn btn-success">View Sale</Link>
         </div>
         <input
-        type="text"
-        className="form-control"
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        style={{ marginBottom: '10px' }}
-      />
+          type="text"
+          className="form-control"
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ marginBottom: '10px' }}
+        />
         {filteredProducts.length === 0 ? (
           <p>No products available in the store.</p>
         ) : (
@@ -281,8 +297,8 @@ function Product() {
           </table>
         )}
         <div className="additional-content">
-        <div className="label-sale">Product for sale</div>
-        <hr/>
+          <div className="label-sale">Product for sale</div>
+          <hr/>
           {selectedProducts.length > 0 ? (
             <div>
               <table className="table">
@@ -309,8 +325,9 @@ function Product() {
                         <input
                           type="number"
                           className="form-control"
-                          value={quantities[product.productId] || 1}
+                          value={quantities[product.productId] || ''}
                           onChange={(e) => handleQuantityChange(product.productId, e.target.value)}
+                          min={1} 
                         />
                       </td>
                       <td>
@@ -333,5 +350,5 @@ function Product() {
     </div>
   );
 }
-  export default Product;
-  
+
+export default Product;
