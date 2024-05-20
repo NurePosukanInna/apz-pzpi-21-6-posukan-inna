@@ -99,12 +99,18 @@
   },
   {
     "ContainingType": "InventoryAPI.Controllers.DefectiveProductsController",
-    "Method": "GetAllDefectiveProducts",
-    "RelativePath": "api/DefectiveProducts",
+    "Method": "GetAllDefectiveProductsForStore",
+    "RelativePath": "api/DefectiveProducts/{storeId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "storeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -197,6 +203,32 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.IEnumerable\u00601[[InventoryAPI.Models.Store, InventoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.EmployeeController",
+    "Method": "GetEmployees",
+    "RelativePath": "api/Employee/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[InventoryAPI.Models.Employee, InventoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -660,26 +692,6 @@
   },
   {
     "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
-    "Method": "GetAllRequests",
-    "RelativePath": "api/SupplierRequest",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[InventoryAPI.Models.SupplierRequest, InventoryAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
     "Method": "UpdateRequest",
     "RelativePath": "api/SupplierRequest/{id}",
     "HttpMethod": "PUT",
@@ -709,6 +721,38 @@
     "Parameters": [
       {
         "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
+    "Method": "GetAllSupplierRequests",
+    "RelativePath": "api/SupplierRequest/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "InventoryAPI.Controllers.SupplierRequestController",
+    "Method": "GetSupplierRequestsForEmployee",
+    "RelativePath": "api/SupplierRequest/employee/{employeeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "employeeId",
         "Type": "System.Int32",
         "IsRequired": true
       }

@@ -62,6 +62,8 @@ namespace InventoryAPI.Services
             return sale;
         }
 
+
+
         public async Task<int?> CalculateOrderQuantity(int productId)
         {
             var lastWeekStartDate = DateTime.UtcNow.Date.AddDays(-7);
@@ -103,6 +105,8 @@ namespace InventoryAPI.Services
         {
             var sales = await _context.Sales
                 .Include(s => s.SaleItems)
+                 .ThenInclude(s => s.Product)
+                 .Include(s => s.Employee) 
                 .Where(s => s.StoreId == storeId)
                 .ToListAsync();
 

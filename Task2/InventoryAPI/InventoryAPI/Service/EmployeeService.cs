@@ -1,7 +1,11 @@
-﻿using InventoryAPI.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using InventoryAPI.Data;
-using Microsoft.EntityFrameworkCore;
+using InventoryAPI.Models;
 using InventoryAPI.Tools;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI.Services
 {
@@ -101,5 +105,28 @@ namespace InventoryAPI.Services
                 throw new Exception($"Error updating employee: {ex.Message}");
             }
         }
+
+        public async Task<IEnumerable<Employee>> GetAllEmployees(int userId)
+        {
+            try
+            {
+                var userStoreIds = await _context.Stores
+                    .Where(s => s.UserId == userId)
+                    .Select(s => s.StoreId)
+                    .ToListAsync();
+
+                var employees = await _context.Employees
+                    .Where(e => userStoreIds.Contains((int)e.StoreId))
+                    .Include(e => e.Store)
+                    .ToListAsync();
+
+                return employees;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving employees for user stores: {ex.Message}");
+            }
+        }
+
     }
 }

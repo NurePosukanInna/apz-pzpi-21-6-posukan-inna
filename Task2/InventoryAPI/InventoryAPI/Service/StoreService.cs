@@ -36,7 +36,11 @@ namespace InventoryAPI.Services
         {
             try
             {
-                var stores = await _context.Stores.Where(s => s.UserId == userId).ToListAsync();
+                var stores = await _context.Stores
+                    .Include(s => s.Sensors)
+                    .Where(s => s.UserId == userId)
+                    .ToListAsync();
+
                 return stores;
             }
             catch (Exception ex)
@@ -44,6 +48,7 @@ namespace InventoryAPI.Services
                 throw new Exception($"Error retrieving stores: {ex.Message}");
             }
         }
+
 
         public async Task<Store> UpdateStore(int storeId, Store updatedStore)
         {

@@ -16,10 +16,56 @@ namespace InventoryAPI.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<SupplierRequest>> GetAllRequests()
+        public async Task<IEnumerable<SupplierRequest>> GetAllSupplierRequests(int userId)
         {
-            return await _context.SupplierRequests.ToListAsync();
+            try
+            {
+                var userStoreIds = await _context.Stores
+                    .Where(s => s.UserId == userId)
+                    .Select(s => s.StoreId)
+                    .ToListAsync();
+
+                var supplierRequests = await _context.SupplierRequests
+                    .Where(req => req.StoreProduct != null && userStoreIds.Contains((int)req.StoreProduct.StoreId))
+                    .Include(req => req.StoreProduct)
+                        .ThenInclude(sp => sp.Store) 
+                    .Include(req => req.StoreProduct)
+                        .ThenInclude(sp => sp.Product) 
+                    .ToListAsync();
+
+                return supplierRequests;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving supplier requests for user stores: {ex.Message}");
+            }
         }
+
+        public async Task<IEnumerable<SupplierRequest>> GetSupplierRequestsForEmployee(int employeeId)
+        {
+            try
+            {
+                var userStoreId = await _context.Employees
+                    .Where(e => e.EmployeeId == employeeId)
+                    .Select(e => e.StoreId)
+                    .FirstOrDefaultAsync();
+
+                var supplierRequests = await _context.SupplierRequests
+                    .Where(req => req.StoreProduct != null && req.StoreProduct.StoreId == userStoreId)
+                    .Include(req => req.StoreProduct)
+                        .ThenInclude(sp => sp.Store)
+                    .Include(req => req.StoreProduct)
+                        .ThenInclude(sp => sp.Product)
+                    .ToListAsync();
+
+                return supplierRequests;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error retrieving supplier requests for employee: {ex.Message}");
+            }
+        }
+
 
         public async Task<IActionResult> UpdateRequest(int id, UpdateRequestDto updateDto)
         {

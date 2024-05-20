@@ -16,18 +16,17 @@ namespace InventoryAPI.Controllers
         {
             _supplierRequestService = supplierRequestService;
         }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SupplierRequest>>> GetAllRequests()
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetAllSupplierRequests(int userId)
         {
             try
             {
-                var requests = await _supplierRequestService.GetAllRequests();
-                return Ok(requests);
+                var supplierRequests = await _supplierRequestService.GetAllSupplierRequests(userId);
+                return Ok(supplierRequests);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $"Error while retrieving supplier requests: {ex.Message}");
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
 
@@ -56,6 +55,20 @@ namespace InventoryAPI.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, $"Error while deleting supplier request: {ex.Message}");
+            }
+        }
+
+        [HttpGet("employee/{employeeId}")]
+        public async Task<IActionResult> GetSupplierRequestsForEmployee(int employeeId)
+        {
+            try
+            {
+                var supplierRequests = await _supplierRequestService.GetSupplierRequestsForEmployee(employeeId);
+                return Ok(supplierRequests);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
     }

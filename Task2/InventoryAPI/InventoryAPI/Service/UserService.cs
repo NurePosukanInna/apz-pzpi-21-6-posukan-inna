@@ -33,7 +33,7 @@ namespace InventoryAPI.Services
                     .Select(u => new
                     {
                         u.UserId,
-                        u.Email,
+                        u.Email
                     })
                     .FirstOrDefaultAsync();
 
@@ -45,6 +45,7 @@ namespace InventoryAPI.Services
                         {
                             e.EmployeeId,
                             e.Email,
+                            e.Position 
                         })
                         .FirstOrDefaultAsync();
 
@@ -54,10 +55,11 @@ namespace InventoryAPI.Services
                     }
 
                     List<Claim> authClaims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Email, dbEmployee.Email),
-                        new Claim("employeeId", dbEmployee.EmployeeId.ToString()),
-                    };
+                {
+                    new Claim(ClaimTypes.Email, dbEmployee.Email),
+                    new Claim("employeeId", dbEmployee.EmployeeId.ToString()),
+                    new Claim("position", dbEmployee.Position) 
+                };
 
                     var token = GenerateToken(authClaims);
 
@@ -69,10 +71,10 @@ namespace InventoryAPI.Services
                 }
 
                 List<Claim> userAuthClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Email, dbUser.Email),
-                    new Claim("userId", dbUser.UserId.ToString()),
-                };
+            {
+                new Claim(ClaimTypes.Email, dbUser.Email),
+                new Claim("userId", dbUser.UserId.ToString())
+            };
 
                 var userToken = GenerateToken(userAuthClaims);
 

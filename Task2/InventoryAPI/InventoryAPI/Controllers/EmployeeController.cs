@@ -70,6 +70,19 @@ namespace InventoryAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving stores: {ex.Message}");
             }
         }
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees(int userId)
+        {
+            try
+            {
+                var employees = await _employeeService.GetAllEmployees(userId);
+                return Ok(employees);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<Employee>> UpdateEmployee(int id, Employee employeeData)

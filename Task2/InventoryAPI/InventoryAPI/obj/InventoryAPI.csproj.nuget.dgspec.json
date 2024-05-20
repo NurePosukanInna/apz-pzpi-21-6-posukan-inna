@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\Inna Posukan\\.nuget\\packages\\",
         "outputPath": "D:\\Project\\apz-pzpi-21-6-posukan-inna\\Task2\\InventoryAPI\\InventoryAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\Inna Posukan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

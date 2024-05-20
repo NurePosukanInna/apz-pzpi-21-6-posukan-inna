@@ -17,20 +17,37 @@ namespace InventoryAPI.Controllers
         {
             _context = context;
         }
-
-        [HttpGet]
-        public IActionResult GetAllDefectiveProducts()
+        [HttpGet("{storeId}")]
+        public IActionResult GetAllDefectiveProductsForStore([FromRoute] int storeId)
         {
             try
             {
-                var defectiveProducts = _context.DefectiveProducts.ToList();
-                return Ok(defectiveProducts);
+                var defectiveProductsForStore = _context.StoreProducts
+                    .Where(sp => sp.StoreId == storeId)
+                    .Join(_context.DefectiveProducts,
+                        sp => sp.ProductId,
+                        dp => dp.ProductId,
+                        (sp, dp) => new
+                        {
+                            ProductId = sp.ProductId,
+                            ProductName = sp.Product.ProductName,
+                            Volume = sp.Product.Volume,
+                            MeasureOfUnits = sp.Product.MeasureOfUnits,
+                            DateDetected = dp.DateDetected,
+                            Reason = dp.Reason
+
+                        })
+                    .ToList();
+
+                return Ok(defectiveProductsForStore);
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Error while retrieving defective products: {ex.Message}");
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Error while retrieving defective products for store: {ex.Message}");
             }
         }
+
+
     }
 }
 
