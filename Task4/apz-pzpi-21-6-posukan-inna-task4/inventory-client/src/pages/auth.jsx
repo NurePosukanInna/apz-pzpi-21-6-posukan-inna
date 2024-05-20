@@ -40,7 +40,7 @@ const Auth = () => {
       if (isLoginMode) {
         window.location.replace('/dashboard');
       } else {
-        window.location.replace('/login');
+        window.location.replace('/');
       }
     } catch (error) {
       console.error(`Error during ${isLoginMode ? 'login' : 'registration'}:`, error);

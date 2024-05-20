@@ -11,6 +11,8 @@ import Defective from './pages/defective';
 import Order from './pages/order';
 import Sale from './pages/sale';
 import Analytics from './pages/analytics';
+import Subscription from './pages/subscription';
+import ActiveSubscription from './pages/activeSubscription';
 
 function App() {
   return (
@@ -26,6 +28,9 @@ function App() {
           <Route path='/order' element={<Order/>} />
           <Route path='/sale' element={<Sale/>} />
           <Route path='/chart' element={<Analytics/>} />
+          <Route path='/subscription' element={<Subscription/>} />
+          <Route path='/active' element={<ActiveSubscription/>} />
+
 
         </Routes>
       </Router>
