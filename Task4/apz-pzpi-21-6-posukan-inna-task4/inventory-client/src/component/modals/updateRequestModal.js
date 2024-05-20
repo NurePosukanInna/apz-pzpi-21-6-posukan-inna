@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 function UpdateRequestModal({ show, handleClose, handleUpdate, request }) {
   const [formData, setFormData] = useState({
     quantity: '',

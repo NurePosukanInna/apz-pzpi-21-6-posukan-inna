@@ -10,13 +10,14 @@ import Employee from './pages/employee';
 import Defective from './pages/defective';
 import Order from './pages/order';
 import Sale from './pages/sale';
+import Analytics from './pages/analytics';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path='/login' element={<Auth/>} />
+          <Route path='/' element={<Auth/>} />
           <Route path='/dashboard' element={<Dashboard/>} />
           <Route path='/shop' element={<Shop/>} />
           <Route path="/shop/:shopId" element={<Product />} />
@@ -24,6 +25,8 @@ function App() {
           <Route path='/defective' element={<Defective/>} />
           <Route path='/order' element={<Order/>} />
           <Route path='/sale' element={<Sale/>} />
+          <Route path='/chart' element={<Analytics/>} />
+
         </Routes>
       </Router>
     </div>

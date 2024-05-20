@@ -15,7 +15,12 @@
     padding: 10px;
     margin: 0;
   }
-  
+  .menu-items-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
   .menu-item {
     margin-bottom: 5px;
     position: relative;
@@ -31,4 +36,7 @@
     margin-top: 20px;
     margin-bottom: 10px;
     width: 80px;
+  }
+  .logout {
+    margin-top: auto;
   }
