@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useTranslation } from 'react-i18next';
+
 function UpdateRequestModal({ show, handleClose, handleUpdate, request }) {
+  const { t } = useTranslation("request");
   const [formData, setFormData] = useState({
     quantity: '',
     requestStatus: '',
@@ -33,12 +36,12 @@ function UpdateRequestModal({ show, handleClose, handleUpdate, request }) {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Update Request</Modal.Title>
+        <Modal.Title>{t('update_request')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="quantity">Quantity:</label>
+            <label htmlFor="quantity">{t('quantity')}:</label>
             <input
               type="number"
               className="form-control"
@@ -49,7 +52,7 @@ function UpdateRequestModal({ show, handleClose, handleUpdate, request }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="requestStatus">Request Status:</label>
+            <label htmlFor="requestStatus">{t('request_status')}:</label>
             <select
               className="form-control"
               id="requestStatus"
@@ -57,18 +60,18 @@ function UpdateRequestModal({ show, handleClose, handleUpdate, request }) {
               value={formData.requestStatus}
               onChange={handleChange}
             >
-              <option value="Pending">Pending</option>
-              <option value="Completed">Completed</option>
+              <option value="Pending">{t('pending')}</option>
+              <option value="Completed">{t('completed')}</option>
             </select>
           </div>
         </form>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
-          Close
+          {t('close')}
         </Button>
         <Button variant="primary" onClick={handleSubmit}>
-          Save Changes
+          {t('save_changes')}
         </Button>
       </Modal.Footer>
     </Modal>

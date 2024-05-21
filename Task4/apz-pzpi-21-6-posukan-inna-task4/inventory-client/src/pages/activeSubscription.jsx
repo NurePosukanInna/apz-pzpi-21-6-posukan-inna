@@ -3,10 +3,12 @@ import { useAuth } from '../context/authContext';
 import { getActiveSubscriptionsForUser } from '../http/subscriptionApi';
 import Menu from '../component/menu/menu';
 import '../styles/subscription.css';
+import { useTranslation } from 'react-i18next';
 
 function ActiveSubscription() {
     const { userId } = useAuth();
     const [activeSubscription, setActiveSubscription] = useState(null);
+    const { t } = useTranslation('activeSubscription');
 
     useEffect(() => {
         const fetchActiveSubscriptions = async () => {
@@ -27,16 +29,16 @@ function ActiveSubscription() {
                 <Menu />
             </div>
             <div className="content">
-                <div className="label-subscription">Your subscription:</div>
+                <div className="label-subscription">{t('your_subscription')}</div>
                 <hr />
                 <div className="subscription-details">
                     {activeSubscription && (
                         <div className="subscription-item">
-                            <p>Status: {activeSubscription.subscriptionStatus}</p>
-                            <p>Start Date: {activeSubscription ? new Date(activeSubscription.startDate).toLocaleDateString() : ''}</p>
-                            <p>End Date: {activeSubscription ? new Date(activeSubscription.endDate).toLocaleDateString() : ''}</p>
-                            <p>Name: {activeSubscription.subscriptionType.name}</p>
-                            <p>Price: {activeSubscription.subscriptionType.price}</p>
+                            <p>{t('status')}: {activeSubscription.subscriptionStatus}</p>
+                            <p>{t('start_date')}: {activeSubscription ? new Date(activeSubscription.startDate).toLocaleDateString() : ''}</p>
+                            <p>{t('end_date')}: {activeSubscription ? new Date(activeSubscription.endDate).toLocaleDateString() : ''}</p>
+                            <p>{t('name')}: {activeSubscription.subscriptionType.name}</p>
+                            <p>{t('price')}: {activeSubscription.subscriptionType.price}</p>
                         </div>
                     )}
                 </div>

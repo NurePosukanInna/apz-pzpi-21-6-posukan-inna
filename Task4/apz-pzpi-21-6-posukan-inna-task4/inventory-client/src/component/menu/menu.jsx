@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './menu.css';
-import { useAuth } from '../../context/authContext'; 
+import { useAuth } from '../../context/authContext';
 import { getActiveSubscriptionsForUser } from '../../http/subscriptionApi';
+import LanguageSwitcher from '../languageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 function Menu() {
   const { userId, handleLogout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [subscriptionType, setSubscriptionType] = useState(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchSubscription = async () => {
@@ -28,7 +31,7 @@ function Menu() {
 
     fetchSubscription();
   }, [userId]);
-  
+
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -64,7 +67,7 @@ function Menu() {
                 <Link to="/shop"><i className="fa fa-shop"></i></Link>
               </li>
               <li className="menu-item">
-                <Link to="/employee"><i className="fa fa-user-group"></i></Link>
+                <Link to="/employee"><i className="fa fa-user-group"></i> </Link>
               </li>
               <li className="menu-item">
                 <Link to="/order"><i className="fa fa-car"></i></Link>
@@ -80,10 +83,11 @@ function Menu() {
         <ul className="menu logout">
           <li className="menu-item">
             <Link to="/" onClick={handleLogoutClick}>
-              <i className="fa fa-sign-out-alt"></i>
+              <i className="fa fa-sign-out-alt"></i> 
             </Link>
           </li>
         </ul>
+        <LanguageSwitcher />
       </div>
     </div>
   );

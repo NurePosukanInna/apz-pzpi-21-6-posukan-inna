@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetchAllStores } from '../../http/shopApi';
 import { useAuth } from '../../context/authContext';
+import { useTranslation } from 'react-i18next';
 
 function UpdateEmployeeModal({ show, handleClose, employeeData, handleUpdate }) {
   const { userId } = useAuth();
+  const { t } = useTranslation('employee');
   const [stores, setStores] = useState([]);
   const [formData, setFormData] = useState({
     email: '',
@@ -55,38 +57,38 @@ function UpdateEmployeeModal({ show, handleClose, employeeData, handleUpdate }) 
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Update Employee</Modal.Title>
+        <Modal.Title>{t('update_employee')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form>
           <div className="form-group">
-            <label>Email:</label>
+            <label>{t('email')}:</label>
             <input type="email" className="form-control" name="email" value={formData.email || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Password:</label>
+            <label>{t('password')}:</label>
             <input type="password" className="form-control" name="password" value={formData.password || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Position:</label>
+            <label>{t('position')}:</label>
             <select className="form-control" name="position" value={formData.position || ''} onChange={handleChange}>
-              <option value="">Select Role</option>
-              <option value="Cashier">Cashier</option>
-              <option value="Store Manager">Store Manager</option>
+              <option value="">{t('select_role')}</option>
+              <option value="Cashier">{t('cashier')}</option>
+              <option value="Store Manager">{t('store_manager')}</option>
             </select>
           </div>
           <div className="form-group">
-            <label>First Name:</label>
+            <label>{t('first_name')}:</label>
             <input type="text" className="form-control" name="firstName" value={formData.firstName || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Last Name:</label>
+            <label>{t('last_name')}:</label>
             <input type="text" className="form-control" name="lastName" value={formData.lastName || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Store:</label>
+            <label>{t('store')}:</label>
             <select className="form-control" name="storeId" value={formData.storeId || ''} onChange={handleChange}>
-              <option value="">Select Store</option>
+              <option value="">{t('select_store')}</option>
               {stores.map(store => (
                 <option key={store.storeId} value={store.storeId}>{store.storeName}</option>
               ))}
@@ -96,7 +98,7 @@ function UpdateEmployeeModal({ show, handleClose, employeeData, handleUpdate }) 
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={handleSubmit}>
-          Update User
+          {t('update')}
         </Button>
       </Modal.Footer>
     </Modal>

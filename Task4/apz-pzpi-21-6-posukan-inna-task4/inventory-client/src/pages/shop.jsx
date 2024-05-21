@@ -4,8 +4,10 @@ import { fetchAllStores, createStore } from '../http/shopApi';
 import { useAuth } from '../context/authContext';
 import Menu from '../component/menu/menu';
 import ShopModal from '../component/modals/shopModal';
+import { useTranslation } from 'react-i18next';
 
 function Shop() {
+  const { t } = useTranslation('shop');
   const [stores, setStores] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,12 +33,12 @@ function Shop() {
         }
         setStores(storesData || []);
       } catch (error) {
-        console.error('Error fetching stores:', error);
+        console.error(t('error_fetching_stores'), error);
       }
     }
 
     fetchData();
-  }, [employeeId, position, userId]);
+  }, [employeeId, position, userId, t]);
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -66,7 +68,7 @@ function Shop() {
       const updatedStores = position === 'Cashier' ? await fetchStoresByEmployeeId(employeeId) : await fetchAllStores(userId);
       setStores(updatedStores || []);
     } catch (error) {
-      console.error('Error adding store:', error);
+      console.error(t('error_adding_store'), error);
     }
     setShowModal(false);
   };
@@ -86,22 +88,22 @@ function Shop() {
         <Menu />
       </div>
       <div className="content">
-        <div className="label-shop">Stores</div>
+        <div className="label-shop">{t('stores')}</div>
         <hr/>
         {position !== "Cashier" && (
           <div className="action">
-            <button className="btn btn-success" style={{ marginBottom: "20px" }} onClick={handleShowModal}>Add Store</button>
+            <button className="btn btn-success" style={{ marginBottom: "20px" }} onClick={handleShowModal}>{t('add_store')}</button>
           </div>
         )}
         <div className="table-responsive">
           <table className="table table-striped">
             <thead className="thead-dark">
               <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
+                <th>{t('id')}</th>
+                <th>{t('name')}</th>
+                <th>{t('address')}</th>
+                <th>{t('temperature')}</th>
+                <th>{t('humidity')}</th>
               </tr>
             </thead>
             <tbody>
@@ -113,10 +115,10 @@ function Shop() {
                   {store.sensors.length > 0 ? (
                     <>
                       <td title={formatTimestamp(store.sensors[0].timestamp)}>
-                        {store.sensors[0].temperature === 0 ? 'Initial temperature value' : `${store.sensors[0].temperature} \u00B0C`}
+                        {store.sensors[0].temperature === 0 ? t('initial_temperature') : `${store.sensors[0].temperature} \u00B0C`}
                       </td>
                       <td title={formatTimestamp(store.sensors[0].timestamp)}>
-                        {store.sensors[0].humidity === 0 ? 'Initial humidity value' : `${store.sensors[0].humidity} %`}
+                        {store.sensors[0].humidity === 0 ? t('initial_humidity') : `${store.sensors[0].humidity} %`}
                       </td>
                     </>
                   ) : (

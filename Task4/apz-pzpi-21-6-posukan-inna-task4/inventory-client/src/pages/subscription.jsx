@@ -3,17 +3,19 @@ import Menu from '../component/menu/menu';
 import { getSubscriptionTypes, addSubscriptionToUser } from '../http/subscriptionApi';
 import '../styles/subscription.css';
 import { useAuth } from '../context/authContext';
+import { useTranslation } from 'react-i18next';
 
 function Subscription() {
   const [subscriptionTypes, setSubscriptionTypes] = useState([]);
   const { userId } = useAuth();
+  const { t } = useTranslation('subscription');
 
   const fetchSubscriptionTypes = async () => {
     try {
       const types = await getSubscriptionTypes();
       setSubscriptionTypes(types);
     } catch (error) {
-      console.error('Error fetching subscription types:', error);
+      console.error(t('error_fetching_subscription_types'), error);
     }
   };
 
@@ -27,7 +29,7 @@ function Subscription() {
       await addSubscriptionToUser(userId, subscriptionData);
       fetchSubscriptionTypes();
     } catch (error) {
-      console.error('Error buying subscription:', error);
+      console.error(t('error_buying_subscription'), error);
     }
   };
 
@@ -37,7 +39,7 @@ function Subscription() {
         <Menu />
       </div>
       <div className="content">
-        <div className="label-subscription">Subscription</div>
+        <div className="label-subscription">{t('label_subscription')}</div>
         <hr />
         <div className="subscription-types">
           {subscriptionTypes.map((type, index) => (
@@ -45,16 +47,16 @@ function Subscription() {
               <div className="subscription-item-inner">
                 <h3>{type.name}</h3>
                 <p>{type.description}</p>
-                <p className="subscription-price">{type.price}$ <small>/ per month</small></p>
+                <p className="subscription-price">{type.price}$ <small>{t('per_month')}</small></p>
                 <ul className="features-list">
-                  <div className="label-subscription-features">In this subscription we prefer:</div>
+                  <div className="label-subscription-features">{t('subscription_features')}</div>
                   {type.name === 'Premium' ? (
-                    <li>&#x2713; All functions</li>
+                    <li>{t('all_functions')}</li>
                   ) : (
-                    <li>&#x2713; All function except analytics</li>
+                    <li>{t('all_functions_except_analytics')}</li>
                   )}
                 </ul>
-                <button className="btn btn-success" onClick={() => handleBuyNow(type.subscriptionTypeId)}>Buy now</button>
+                <button className="btn btn-success" onClick={() => handleBuyNow(type.subscriptionTypeId)}>{t('buy_now')}</button>
               </div>
             </div>
           ))}

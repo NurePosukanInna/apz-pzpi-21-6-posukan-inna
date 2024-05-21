@@ -8,17 +8,18 @@ import UpdateProductModal from '../component/modals/updateProductModal';
 import { addSale } from '../http/saleApi';
 import { useProductContext } from '../context/productContext';
 import { useAuth } from '../context/authContext';
+import { useTranslation } from 'react-i18next';
 
 function Product() {
   const { shopId } = useParams();
   const { userId, position, employeeId } = useAuth();
-  const [storeId, setStoreId] = useState(null); 
-  const { selectedProducts, addSelectedProduct, removeProductFromContext, clearSelectedProducts } = useProductContext();
+  const { t } = useTranslation('product');
+  const [storeId, setStoreId] = useState(null);
   const [store, setStore] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [searchQuery, setSearchQuery] = useState(''); 
+  const [searchQuery, setSearchQuery] = useState('');
   const [formData, setFormData] = useState({
     ProductName: '',
     Price: '',
@@ -33,6 +34,7 @@ function Product() {
   const [availableCurrencies, setAvailableCurrencies] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [quantities, setQuantities] = useState({});
+  const { selectedProducts, addSelectedProduct, removeProductFromContext, clearSelectedProducts } = useProductContext();
 
   useEffect(() => {
     localStorage.setItem('shopId', shopId);
@@ -42,7 +44,7 @@ function Product() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setStoreId(shopId); 
+        setStoreId(shopId);
         const storeData = await fetchStoreById(shopId);
         setStore(storeData);
         const products = await fetchAllProducts(shopId);
@@ -92,7 +94,7 @@ function Product() {
       [name]: name === 'expiryDate' ? (newValue === '' ? null : new Date(newValue)) : updatedValue,
     }));
   };
-  
+
   const handleSubmitAdd = async () => {
     try {
       await addProduct({ ...formData, storeId: shopId });
@@ -128,6 +130,7 @@ function Product() {
       console.error('Error updating product:', error);
     }
   };
+
   const handleAddSale = async () => {
     try {
       const saleItems = selectedProducts.filter(product => {
@@ -137,34 +140,33 @@ function Product() {
         productId: product.productId,
         quantity: quantities[product.productId]
       }));
-      
+
       if (saleItems.length === 0) {
-        alert('No products available for sale.');
-        return; 
+        alert(t('no_products_available'));
+        return;
       }
-  
+
       let saleData = {
         storeId: shopId,
         saleItems: saleItems
       };
-  
+
       if (position === 'Cashier') {
         saleData.employeeId = employeeId;
       } else {
         saleData.userId = userId;
       }
-  
+
       await addSale(saleData);
-      alert('Sale added successfully');
-  
+      alert(t('sale_added'));
+
       setQuantities({});
       clearSelectedProducts();
     } catch (error) {
       console.error('Error adding sale:', error);
     }
   };
-  
-  
+
   const handleQuantityChange = (productId, newQuantity) => {
     setQuantities(prevState => ({
       ...prevState,
@@ -181,7 +183,6 @@ function Product() {
       console.error('Error deleting product:', error);
     }
   };
-
   const calculateTotalPrice = () => {
     let total = 0;
     selectedProducts.forEach(product => {
@@ -205,7 +206,6 @@ function Product() {
       return false;
     })
   );
-
   return (
     <div className="product-page">
       <div className="product-menu">
@@ -231,41 +231,41 @@ function Product() {
       />
 
       <div className='content'>
-        <div className="label-products">Product for shop: {shopId}</div>
+        <div className="label-products">{t('label_products')}: {shopId}</div>
         <hr />
         <div className="action" style={{ marginBottom: '20px', marginTop: '20px' }}>
-          <button className="btn btn-success" onClick={() => handleAddModalOpen()}>Add Product</button>
+          <button className="btn btn-success" onClick={() => handleAddModalOpen()}>{t('add_product')}</button>
           <span style={{ marginRight: '10px' }}></span>
-          <Link to="/defective" className="btn btn-success">View Defective Products</Link>
+          <Link to="/defective" className="btn btn-success">{t('view_defective_products')}</Link>
           <span style={{ marginRight: '10px' }}></span>
-          <Link to="/sale" className="btn btn-success">View Sale</Link>
+          <Link to="/sale" className="btn btn-success">{t('view_sale')}</Link>
         </div>
         <input
           type="text"
           className="form-control"
-          placeholder="Search..."
+          placeholder={t('search_placeholder')}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           style={{ marginBottom: '10px' }}
         />
         {filteredProducts.length === 0 ? (
-          <p>No products available in the store.</p>
+          <p>{t('no_products_available')}</p>
         ) : (
           <table className="table">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Currency</th>
-                <th>Volume</th>
-                <th>Fresh</th>
-                <th>Expiry Date</th>
-                <th>Quantity</th>
-                <th>Min Quantity</th>
-                <th>Supplier</th>
-                <th>Category</th>
-                <th>Action</th>
-                <th>Update</th>
+                <th>{t('name')}</th>
+                <th>{t('price')}</th>
+                <th>{t('currency')}</th>
+                <th>{t('volume')}</th>
+                <th>{t('fresh')}</th>
+                <th>{t('expiry_date')}</th>
+                <th>{t('quantity')}</th>
+                <th>{t('min_quantity')}</th>
+                <th>{t('supplier')}</th>
+                <th>{t('category')}</th>
+                <th>{t('action')}</th>
+                <th>{t('update')}</th>
               </tr>
             </thead>
             <tbody>
@@ -276,20 +276,20 @@ function Product() {
                   <td>{product.currency}</td>
                   <td>{product.volume}</td>
                   <td>{product.isFresh ? '+' : '-'}</td>
-                  <td>{product.expiryDate ? new Date(product.expiryDate).toLocaleDateString() : 'Not Fresh'}</td>
+                  <td>{product.expiryDate ? new Date(product.expiryDate).toLocaleDateString() : t('not_fresh')}</td>
                   <td>{product.storeProducts && product.storeProducts.length > 0 ?
-                    product.storeProducts[0].quantity : 'Not Available'}
+                    product.storeProducts[0].quantity : t('not_available')}
                   </td>
                   <td>{product.storeProducts && product.storeProducts.length > 0 ?
-                    product.storeProducts[0].minQuantity : 'Not Available'}
+                    product.storeProducts[0].minQuantity : t('not_available')}
                   </td>
-                  <td>{product.supplier ? product.supplier.address : 'Not Available'}</td>
-                  <td>{product.category ? product.category.categoryName : 'Not Available'}</td>
+                  <td>{product.supplier ? product.supplier.address : t('not_available')}</td>
+                  <td>{product.category ? product.category.categoryName : t('not_available')}</td>
                   <td>
-                    <button className='btn btn-danger' onClick={() => handleDeleteProduct(product.productId)}>Delete</button>
+                    <button className='btn btn-danger' onClick={() => handleDeleteProduct(product.productId)}>{t('delete')}</button>
                   </td>
                   <td>
-                    <button className='btn btn-info' onClick={() => handleUpdateModalOpen(product.productId)}>Update</button>
+                    <button className='btn btn-info' onClick={() => handleUpdateModalOpen(product.productId)}>{t('update')}</button>
                   </td>
                 </tr>
               ))}
@@ -297,20 +297,19 @@ function Product() {
           </table>
         )}
         <div className="additional-content">
-          <div className="label-sale">Product for sale</div>
-          <hr/>
+          <div className="label-sale">{t('label_sale')}</div>
+          <hr />
           {selectedProducts.length > 0 ? (
             <div>
               <table className="table">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Currency</th>
-                    <th>Volume</th>
-                    <th>Measure of Units</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
+                    <th>{t('name')}</th>
+                    <th>{t('price')}</th>
+                    <th>{t('currency')}</th>
+                    <th>{t('volume')}</th>
+                    <th>{t('measurement_unit')}</th>
+                    <th>{t('quantity')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -327,23 +326,20 @@ function Product() {
                           className="form-control"
                           value={quantities[product.productId] || ''}
                           onChange={(e) => handleQuantityChange(product.productId, e.target.value)}
-                          min={1} 
+                          min={1}
                         />
-                      </td>
-                      <td>
-                        <button className="btn btn-danger" onClick={() => removeProductFromContext(product.productId)}>Delete</button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <p>Total Price: {totalPrice}</p>
+              <p>{t('total_price')}: {totalPrice}</p>
               <div className="action" style={{ marginBottom: '20px' }}>
-                <button className="btn btn-primary" onClick={() => handleAddSale()}>Add Sale</button>
+                <button className="btn btn-primary" onClick={() => handleAddSale()}>{t('add_sale')}</button>
               </div>
             </div>
           ) : (
-            <p>No products selected</p>
+            <p>{t('no_products_selected')}</p>
           )}
         </div>
       </div>

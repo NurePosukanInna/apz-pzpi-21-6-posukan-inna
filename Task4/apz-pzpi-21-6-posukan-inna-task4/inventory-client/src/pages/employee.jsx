@@ -5,6 +5,7 @@ import AddEmployeeModal from '../component/modals/addEmployeeModal';
 import UpdateEmployeeModal from '../component/modals/updateEmployeeModal';
 import '../styles/employee.css';
 import { useAuth } from '../context/authContext';
+import { useTranslation } from 'react-i18next';
 
 function Employee() {
   const [employee, setEmployee] = useState([]);
@@ -21,6 +22,7 @@ function Employee() {
   const [showSuccessAlert, setShowSuccessAlert] = useState(false); 
 
   const { userId } = useAuth();
+  const { t } = useTranslation('employee');
 
   useEffect(() => {
     fetchData();
@@ -65,7 +67,7 @@ function Employee() {
     try {
       await addEmployee(formData);
       
-      alert('Employee successfully added!');
+      alert(t('employee_successfully_added'));
       setShowAddModal(false);
       
       await fetchData();
@@ -82,22 +84,23 @@ function Employee() {
     }
   };
 
+
   const handleDeleteUser = async (employeeId) => {
     try {
       await deleteEmployee(employeeId);
-      alert('Employee successfully deleted!');
+      alert(t('employee_successfully_deleted'));
       await fetchData();
     } catch (error) {
       console.error('Error deleting employee:', error);
     }
   };
-
+  
   const handleUpdateUser = (employeeId) => {
     const selected = employee.find(emp => emp.employeeId === employeeId);
     setSelectedEmployee(selected);
     setShowUpdateModal(true);
   };
-
+  
   const handleUpdateEmployee = async (employeeId, updatedData) => {
     try {
       await updateEmployee(employeeId, updatedData);
@@ -108,28 +111,28 @@ function Employee() {
       console.error('Error updating employee:', error);
     }
   };
-  
+    
   return (
     <div className='employee-page'>
       <div className="employee-menu">
         <Menu />
       </div>
       <div className="content">
-        <div className="label-employee">Employee</div>
+        <div className="label-employee">{t('label_employee')}</div>
         <hr/>
         <div className="action" style={{ marginBottom: '20px' }}>
-          <button className="btn btn-success" onClick={handleAddUserClick}>Add User</button>
+          <button className="btn btn-success" onClick={handleAddUserClick}>{t('add_user')}</button>
         </div>
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Email</th>
-              <th>Position</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Store</th>
-              <th>Action</th>
-              <th>Update</th>
+              <th>{t('email')}</th>
+              <th>{t('position')}</th>
+              <th>{t('first_name')}</th>
+              <th>{t('last_name')}</th>
+              <th>{t('store')}</th>
+              <th>{t('action')}</th>
+              <th>{t('update')}</th>
             </tr>
           </thead>
           <tbody>
@@ -139,12 +142,12 @@ function Employee() {
                 <td>{employee.position}</td>
                 <td>{employee.firstName}</td>
                 <td>{employee.lastName}</td>
-                <td>{employee.store ? employee.store.storeName : 'Not Available'}</td>
+                <td>{employee.store ? employee.store.storeName : t('not_available')}</td>
                 <td>
-                  <button className='btn btn-danger' onClick={() => handleDeleteUser(employee.employeeId)}>Delete</button>
+                  <button className='btn btn-danger' onClick={() => handleDeleteUser(employee.employeeId)}>{t('delete')}</button>
                 </td>
                 <td>
-                  <button className='btn btn-info' onClick={() => handleUpdateUser(employee.employeeId)}>Update</button>
+                  <button className='btn btn-info' onClick={() => handleUpdateUser(employee.employeeId)}>{t('update')}</button>
                 </td>
               </tr>
             ))}
@@ -167,12 +170,11 @@ function Employee() {
       {showSuccessAlert && (
         <div className="bottom-alert">
           <div className="alert alert-success" role="alert">
-            Employee successfully updated!
+            {t('employee_successfully_updated')}
           </div>
         </div>
       )}
     </div>
   );
 }
-
 export default Employee;

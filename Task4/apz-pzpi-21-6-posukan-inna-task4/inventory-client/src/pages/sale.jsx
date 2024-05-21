@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Menu from '../component/menu/menu';
 import { getSalesByStoreId } from '../http/saleApi';
+import { useTranslation } from 'react-i18next';
 
 function Sale() {
+    const { t } = useTranslation('sales');
     const [sales, setSales] = useState([]);
     const [storeId, setStoreId] = useState(null); 
 
@@ -21,7 +23,7 @@ function Sale() {
                 const salesData = await getSalesByStoreId(storeId);
                 setSales(salesData);
             } catch (error) {
-                console.error('Error fetching sales:', error);
+                console.error(t('error_fetching_sales'), error);
             }
         };
 
@@ -36,18 +38,18 @@ function Sale() {
                 <Menu />
             </div>
             <div className="content">
-                <div className="label-sale">Sales</div>
+                <div className="label-sale">{t('sale')}</div>
                 <hr/>
                 <div className="sales-list">
                     <table className="table">
                         <thead>
                             <tr>
-                                <th>Sale ID</th>
-                                <th>Sale Date</th>
-                                <th>Employee</th>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                                <th>{t('sale_id')}</th>
+                                <th>{t('sale_date')}</th>
+                                <th>{t('employee')}</th>
+                                <th>{t('product_name')}</th>
+                                <th>{t('quantity')}</th>
+                                <th>{t('price')}</th>
                             </tr>
                         </thead>
                         <tbody>

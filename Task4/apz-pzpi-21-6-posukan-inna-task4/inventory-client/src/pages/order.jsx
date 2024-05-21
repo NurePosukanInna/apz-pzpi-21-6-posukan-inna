@@ -3,9 +3,11 @@ import { fetchAllSupplierRequestsForEmployee, fetchAllSupplierRequests, deleteSu
 import { useAuth } from '../context/authContext';
 import Menu from '../component/menu/menu';
 import UpdateModal from '../component/modals/updateRequestModal';
+import { useTranslation } from 'react-i18next';
 
 function Order() {
   const { userId, employeeId, position } = useAuth();
+  const { t } = useTranslation('order');
   const [supplierRequests, setSupplierRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,18 +32,18 @@ function Order() {
         setError(null);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setError('Failed to fetch data. Please try again later.');
+        setError(t('fetch_data_error'));
       } finally {
         setLoading(false);
       }
     }
     fetchData();
-  }, [employeeId, position, userId]);
+  }, [employeeId, position, userId, t]);
 
   const handleDelete = async (requestId) => {
     try {
       await deleteSupplierRequest(requestId);
-      alert('Request successfully deleted!');
+      alert(t('request_deleted'));
       const updatedRequests = supplierRequests.filter(request => request.requestId !== requestId);
       setSupplierRequests(updatedRequests);
     } catch (error) {
@@ -62,7 +64,7 @@ function Order() {
   const handleUpdateSubmit = async (updatedData) => {
     try {
       await updateSupplierRequest(selectedRequest.requestId, updatedData);
-      alert('Request successfully updated!');
+      alert(t('request_updated'));
       setShowModal(false);
       const updatedRequests = supplierRequests.map(request =>
         request.requestId === selectedRequest.requestId ? { ...request, ...updatedData } : request
@@ -79,10 +81,10 @@ function Order() {
         <Menu/>
       </div>
       <div className="content">
-        <div className="label-employee">Request for supplier</div>
+        <div className="label-employee">{t('label_supplier_request')}</div>
         <hr/>
         {loading ? (
-          <p>Loading...</p>
+          <p>{t('loading')}</p>
         ) : error ? (
           <p>{error}</p>
         ) : (
@@ -90,17 +92,16 @@ function Order() {
             <table className="table table-striped">
               <thead>
                 <tr>
-                  <th>Order id</th>
-                  <th>Store Name</th>
-                  <th>Product Name</th>
-                  <th>Quantity</th>
-                  <th>Total Amount</th>
-                  <th>Request Date</th>
-                  <th>Request Status</th>
-                  <th>Delivery Date</th>
-                  <th>Actions</th>
-                  <th>Update</th>
-
+                  <th>{t('order_id')}</th>
+                  <th>{t('store_name')}</th>
+                  <th>{t('product_name')}</th>
+                  <th>{t('quantity')}</th>
+                  <th>{t('total_amount')}</th>
+                  <th>{t('request_date')}</th>
+                  <th>{t('request_status')}</th>
+                  <th>{t('delivery_date')}</th>
+                  <th>{t('actions')}</th>
+                  <th>{t('update')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -113,12 +114,12 @@ function Order() {
                     <td>{request.totalAmount}</td>
                     <td>{request.requestDate ? new Date(request.requestDate).toLocaleDateString() : ''}</td>
                     <td>{request.requestStatus}</td>
-                    <td>{request.deliveryDate ? new Date(request.deliveryDate).toLocaleDateString() : 'Not Delivered'}</td>
+                    <td>{request.deliveryDate ? new Date(request.deliveryDate).toLocaleDateString() : t('not_delivered')}</td>
                     <td>
-                      <button className='btn btn-danger' onClick={() => handleDelete(request.requestId)}>Delete</button>
+                      <button className='btn btn-danger' onClick={() => handleDelete(request.requestId)}>{t('delete')}</button>
                     </td>
                     <td>
-                      <button className='btn btn-info' onClick={() => handleUpdate(request)}>Update</button>
+                      <button className='btn btn-info' onClick={() => handleUpdate(request)}>{t('update')}</button>
                     </td>
                   </tr>
                 ))}

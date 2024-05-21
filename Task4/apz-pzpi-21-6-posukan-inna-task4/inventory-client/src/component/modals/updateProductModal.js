@@ -3,8 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetchCategories } from '../../http/categoryApi';
 import { fetchSuppliers } from '../../http/supplierApi';
+import { useTranslation } from 'react-i18next';
 
 function UpdateProductModal({ show, handleClose, formData = {}, handleChange, handleSubmit, availableCurrencies }) {
+  const { t } = useTranslation('product');
   const [prevFormData, setPrevFormData] = useState({});
   const [categories, setCategories] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
@@ -41,40 +43,40 @@ function UpdateProductModal({ show, handleClose, formData = {}, handleChange, ha
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Update Product</Modal.Title>
+        <Modal.Title>{t('update_product')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form>
           <div className="form-group">
-            <label>Name:</label>
+            <label>{t('name')}:</label>
             <input type="text" className="form-control" name="productName" value={mergedFormData.productName || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Price:</label>
+            <label>{t('price')}:</label>
             <input type="number" className="form-control" name="price" value={mergedFormData.price || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Minimum Quantity:</label>
+            <label>{t('min_quantity')}:</label>
             <input type="number" className="form-control" name="minQuantity" value={mergedFormData.minQuantity || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Quantity:</label>
+            <label>{t('quantity')}:</label>
             <input type="number" className="form-control" name="quantity" value={mergedFormData.quantity || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Volume:</label>
+            <label>{t('volume')}:</label>
             <input type="number" className="form-control" name="volume" value={mergedFormData.volume || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Measurement Unit:</label>
+            <label>{t('measurement_unit')}:</label>
             <input type="text" className="form-control" name="measureOfUnits" value={mergedFormData.measureOfUnits || ''} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Is Fresh:</label>
+            <label>{t('is_fresh')}:</label>
             <input type="checkbox" className="form-check-input" name="isFresh" checked={mergedFormData.isFresh} onChange={handleChange} />
           </div>
           <div className="form-group">
-            <label>Expiry Date:</label>
+            <label>{t('expiry_date')}:</label>
             <input 
               type="date" 
               className="form-control" 
@@ -84,25 +86,25 @@ function UpdateProductModal({ show, handleClose, formData = {}, handleChange, ha
             />
           </div> 
           <div className="form-group">
-            <label>Category:</label>
+            <label>{t('category')}:</label>
             <select className="form-control" name="categoryId" value={mergedFormData.categoryId || ''} onChange={handleChange}>
-              <option value="">Select Category</option>
+              <option value="">{t('select_category')}</option>
               {categories.map(category => (
                 <option key={category.categoryId} value={category.categoryId}>{category.categoryName}</option>
               ))}
             </select>
           </div>
           <div className="form-group">
-            <label>Supplier:</label>
+            <label>{t('supplier')}:</label>
             <select className="form-control" name="supplierId" value={mergedFormData.supplierId || ''} onChange={handleChange}>
-              <option value="">Select Supplier</option>
+              <option value="">{t('select_supplier')}</option>
               {suppliers.map(supplier => (
                 <option key={supplier.supplierId} value={supplier.supplierId}>{supplier.address}</option>
               ))}
             </select>
           </div>
           <div className="form-group">
-            <label>Currency:</label>
+            <label>{t('currency')}:</label>
             <select className="form-control" name="currency" value={mergedFormData.currency || ''} onChange={handleChange}>
               {availableCurrencies.map(currency => (
                 <option key={currency} value={currency}>{currency}</option>
@@ -113,7 +115,7 @@ function UpdateProductModal({ show, handleClose, formData = {}, handleChange, ha
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={handleSubmit}>
-          Update Product
+          {t('update')}
         </Button>
       </Modal.Footer>
     </Modal>

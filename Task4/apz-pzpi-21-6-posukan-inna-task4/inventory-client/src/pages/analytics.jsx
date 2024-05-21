@@ -4,11 +4,13 @@ import SalesChart from '../component/salesChart';
 import { fetchAllStores } from '../http/shopApi';
 import { useAuth } from '../context/authContext';
 import { Form } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 function Analytics() {
   const [storeId, setStoreId] = useState(null);
   const [stores, setStores] = useState([]);
   const { userId } = useAuth();
+  const { t } = useTranslation('analytics');
 
   useEffect(() => {
     fetchAllStores(userId)
@@ -35,7 +37,7 @@ function Analytics() {
         <Menu />
       </div>
       <div className="content">
-        <div className="label-analytics">Store analytics </div>
+        <div className="label-analytics">{t('store_analytics')}</div>
         <hr/>
         <Form.Select value={storeId} onChange={handleStoreChange}>
           {stores.map(store => (
