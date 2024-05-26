@@ -4,6 +4,7 @@ import { getSubscriptionTypes, addSubscriptionToUser } from '../http/subscriptio
 import '../styles/subscription.css';
 import { useAuth } from '../context/authContext';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 function Subscription() {
   const [subscriptionTypes, setSubscriptionTypes] = useState([]);
@@ -56,7 +57,9 @@ function Subscription() {
                     <li>{t('all_functions_except_analytics')}</li>
                   )}
                 </ul>
+                <Link to="/active">
                 <button className="btn btn-success" onClick={() => handleBuyNow(type.subscriptionTypeId)}>{t('buy_now')}</button>
+                </Link>
               </div>
             </div>
           ))}

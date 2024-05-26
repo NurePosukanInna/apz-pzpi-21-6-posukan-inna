@@ -168,11 +168,21 @@ function Product() {
   };
 
   const handleQuantityChange = (productId, newQuantity) => {
-    setQuantities(prevState => ({
-      ...prevState,
-      [productId]: newQuantity.trim() === '' ? '' : parseFloat(newQuantity)
-    }));
+    const product = selectedProducts.find(product => product.productId === productId);
+    const availableQuantity = product && product.storeProducts && product.storeProducts.length > 0 ?
+      product.storeProducts[0].quantity : 0;
+    const validatedQuantity = newQuantity.trim() === '' ? '' : parseFloat(newQuantity);
+  
+    if (validatedQuantity <= availableQuantity || isNaN(validatedQuantity)) {
+      setQuantities(prevState => ({
+        ...prevState,
+        [productId]: validatedQuantity
+      }));
+    } else {
+      alert(t('no_products_available'));
+    }
   };
+  
 
   const handleDeleteProduct = async (productId) => {
     try {
@@ -206,6 +216,7 @@ function Product() {
       return false;
     })
   );
+ 
   return (
     <div className="product-page">
       <div className="product-menu">
@@ -234,7 +245,9 @@ function Product() {
         <div className="label-products">{t('label_products')}: {shopId}</div>
         <hr />
         <div className="action" style={{ marginBottom: '20px', marginTop: '20px' }}>
-          <button className="btn btn-success" onClick={() => handleAddModalOpen()}>{t('add_product')}</button>
+          {position !== 'Cashier' && (
+            <button className="btn btn-success" onClick={() => handleAddModalOpen()}>{t('add_product')}</button>
+          )}
           <span style={{ marginRight: '10px' }}></span>
           <Link to="/defective" className="btn btn-success">{t('view_defective_products')}</Link>
           <span style={{ marginRight: '10px' }}></span>
@@ -270,8 +283,14 @@ function Product() {
             </thead>
             <tbody>
               {filteredProducts.map(product => (
-                <tr key={product.productId}>
-                  <td onClick={() => addSelectedProduct(product)}>{product.productName}</td>
+              <tr key={product.productId} style={{ cursor: 'pointer' }}>
+                  <td onClick={() => {
+                    if (product.storeProducts && product.storeProducts.length > 0 && product.storeProducts[0].quantity > 0) {
+                      addSelectedProduct(product);
+                    } else {
+                      alert(t('no_products_available'));
+                    }
+                  }}>{product.productName}</td>
                   <td>{product.price}</td>
                   <td>{product.currency}</td>
                   <td>{product.volume}</td>

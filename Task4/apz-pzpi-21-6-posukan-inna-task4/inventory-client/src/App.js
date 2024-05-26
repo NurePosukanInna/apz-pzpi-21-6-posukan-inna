@@ -30,8 +30,6 @@ function App() {
           <Route path='/chart' element={<Analytics/>} />
           <Route path='/subscription' element={<Subscription/>} />
           <Route path='/active' element={<ActiveSubscription/>} />
-
-
         </Routes>
       </Router>
     </div>

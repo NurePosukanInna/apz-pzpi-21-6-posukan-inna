@@ -10,9 +10,6 @@
     "analytics": {
       "store_analytics": "Store analytics"
     },
-    "dashboard": {
-      "label_dashboard": "Dashboard"
-    },
     "defective": {
       "defective_products_for_shop": "Defective products for shop",
       "product_name": "Product Name",
@@ -131,7 +128,8 @@
             "measurement_unit": "Measure Of Units",
             "update_product": "Update Product", 
             "sale_added":"Sale added successfully!",
-            "no_products_available": "No products available in the store"
+            "no_products_available": "No products available in the store",
+            "delete":"Delete"
           }, 
           
           "request": {
@@ -142,7 +140,17 @@
             "completed": "Completed",
             "close": "Close",
             "save_changes": "Save Changes"
+          },
+          "dashboard": {
+            "dashboard": "Dashboard",
+            "createOrders": "Create Orders",
+            "createOrdersDescription": "Easily create and manage your orders.",
+            "createOrderButton": "Create Order",
+            "analyzeSales": "Analyze Sales",
+            "analyzeSalesDescription": "Get insights into your sales performance.",
+            "displaySalesButton": "Display Sales"
           }
+
         }
                   
               

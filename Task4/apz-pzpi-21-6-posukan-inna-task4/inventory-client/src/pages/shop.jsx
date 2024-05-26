@@ -108,7 +108,7 @@ function Shop() {
             </thead>
             <tbody>
               {stores.map(store => (
-                <tr key={store.storeId} onClick={() => redirectToStorePage(store.storeId)}>
+                <tr  style={{ cursor: 'pointer' }} key={store.storeId} onClick={() => redirectToStorePage(store.storeId)}>
                   <td>{store.storeId}</td>
                   <td>{store.storeName}</td>
                   <td>{store.address}</td>

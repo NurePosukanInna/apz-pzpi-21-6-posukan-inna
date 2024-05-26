@@ -10,9 +10,7 @@
     "analytics": {
       "store_analytics": "Аналітика магазину"
     },
-    "dashboard": {
-      "label_dashboard": "Панель управління"
-    },
+
     "defective": {
       "defective_products_for_shop": "зіпсовані продукти для магазину",
       "product_name": "Назва продукту",
@@ -140,7 +138,17 @@
         "completed": "Завершено",
         "close": "Закрити",
         "save_changes": "Зберегти Зміни"
+      },
+      "dashboard": {
+        "dashboard": "Панель управління",
+        "createOrders": "Створюйте замовлення",
+        "createOrdersDescription": "Легко створюйте та керуйте своїми замовленнями.",
+        "createOrderButton": "Створити замовлення",
+        "analyzeSales": "Аналіз продажів",
+        "analyzeSalesDescription": "Отримайте інформацію про ефективність ваших продажів.",
+        "displaySalesButton": "Показати продажі"
       }
+    
     }
     
     
