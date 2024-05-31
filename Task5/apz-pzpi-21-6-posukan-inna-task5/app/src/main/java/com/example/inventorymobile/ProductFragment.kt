@@ -10,6 +10,7 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.inventorymobile.Connection.ConnectionClass
+import com.google.android.material.appbar.MaterialToolbar
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.SQLException
@@ -17,7 +18,6 @@ import java.sql.SQLException
 class ProductFragment : Fragment() {
 
     private lateinit var storeId: String
-    private lateinit var storeIdTextView: TextView
     private lateinit var productListView: ListView
     private lateinit var productAdapter: ArrayAdapter<Pair<String, Int>>
     private lateinit var connectionClass: ConnectionClass
@@ -33,14 +33,17 @@ class ProductFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_product, container, false)
 
-        storeIdTextView = view.findViewById(R.id.textViewStoreId)
         productListView = view.findViewById(R.id.listViewProducts)
 
-        storeIdTextView.text = storeId
-
-        productAdapter = object : ArrayAdapter<Pair<String, Int>>(requireContext(), R.layout.item_product, R.id.textViewProductName, mutableListOf()) {
+        productAdapter = object : ArrayAdapter<Pair<String, Int>>(
+            requireContext(),
+            R.layout.item_product,
+            R.id.textViewProductName,
+            mutableListOf()
+        ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
+                val view =
+                    convertView ?: LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
                 val productNameTextView = view.findViewById<TextView>(R.id.textViewProductName)
                 val productQuantityTextView = view.findViewById<TextView>(R.id.textViewProductQuantity)
                 val (productName, productQuantity) = getItem(position)!!
@@ -58,7 +61,14 @@ class ProductFragment : Fragment() {
         return view
     }
 
-    private inner class FetchProductsTask : AsyncTask<Void, Void, List<Pair<String, Int>>>() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (requireActivity() as? MainActivity)?.setToolbarTitle("Products")
+    }
+
+    private inner class FetchProductsTask :
+        AsyncTask<Void, Void, List<Pair<String, Int>>>() {
         override fun doInBackground(vararg params: Void?): List<Pair<String, Int>> {
             val products = mutableListOf<Pair<String, Int>>()
             val connection: Connection? = connectionClass.connectToSQL()

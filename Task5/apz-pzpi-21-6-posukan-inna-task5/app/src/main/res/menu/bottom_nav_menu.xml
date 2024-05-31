@@ -5,9 +5,9 @@
         android:title="Home"
         android:icon="@drawable/home" />
     <item
-        android:id="@+id/menu_employee"
-        android:title="Employee"
-        android:icon="@drawable/employee" />
+        android:id="@+id/menu_request"
+        android:title="Request"
+        android:icon="@drawable/car" />
     <item
         android:id="@+id/menu_profile"
         android:title="Profile"

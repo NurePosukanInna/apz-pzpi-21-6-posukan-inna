@@ -4,8 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.inventorymobile.databinding.ActivityMainBinding
+import com.google.android.material.appbar.MaterialToolbar
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var toolbar: MaterialToolbar
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         replaceFragment(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
@@ -26,8 +30,8 @@ class MainActivity : AppCompatActivity() {
                     replaceFragment(ProfileFragment())
                     true
                 }
-                R.id.menu_employee -> {
-                    replaceFragment(EmployeeFragment())
+                R.id.menu_request -> {
+                    replaceFragment(RequestFragment())
                     true
                 }
                 else -> false
@@ -39,5 +43,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame_layout, fragment)
             .commit()
+    }
+    fun setToolbarTitle(title: String) {
+        supportActionBar?.title = title
     }
 }
