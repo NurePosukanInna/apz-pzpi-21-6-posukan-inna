@@ -1,26 +1,28 @@
 package com.example.inventorymobile
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.inventorymobile.Connection.ConnectionClass
-import com.google.android.material.appbar.MaterialToolbar
-import java.sql.Connection
-import java.sql.ResultSet
-import java.sql.SQLException
+import com.example.inventorymobile.service.ProductService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProductFragment : Fragment() {
 
     private lateinit var storeId: String
     private lateinit var productListView: ListView
-    private lateinit var productAdapter: ArrayAdapter<Pair<String, Int>>
-    private lateinit var connectionClass: ConnectionClass
+    private lateinit var productAdapter: ArrayAdapter<Triple<String, Int, Int>>
+    private lateinit var productService: ProductService
+    private var products = mutableListOf<Triple<String, Int, Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,18 +37,17 @@ class ProductFragment : Fragment() {
 
         productListView = view.findViewById(R.id.listViewProducts)
 
-        productAdapter = object : ArrayAdapter<Pair<String, Int>>(
+        productAdapter = object : ArrayAdapter<Triple<String, Int, Int>>(
             requireContext(),
             R.layout.item_product,
             R.id.textViewProductName,
             mutableListOf()
         ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view =
-                    convertView ?: LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
+                val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
                 val productNameTextView = view.findViewById<TextView>(R.id.textViewProductName)
                 val productQuantityTextView = view.findViewById<TextView>(R.id.textViewProductQuantity)
-                val (productName, productQuantity) = getItem(position)!!
+                val (productName, productQuantity, _) = getItem(position)!!
                 productNameTextView.text = productName
                 productQuantityTextView.text = "Quantity: $productQuantity"
                 return view
@@ -54,59 +55,42 @@ class ProductFragment : Fragment() {
         }
         productListView.adapter = productAdapter
 
-        connectionClass = ConnectionClass()
+        productListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+            val selectedProduct = products[position]
+            val productId = selectedProduct.third
 
-        FetchProductsTask().execute()
+            val productDetailFragment = ProductDetailFragment.newInstance(productId)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, productDetailFragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        productService = ProductService(requireContext(), ConnectionClass())
+
+        lifecycleScope.launch {
+            val fetchedProducts = withContext(Dispatchers.IO) {
+                productService.fetchProducts(storeId)
+            }
+            updateUI(fetchedProducts)
+        }
 
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         (requireActivity() as? MainActivity)?.setToolbarTitle("Products")
     }
 
-    private inner class FetchProductsTask :
-        AsyncTask<Void, Void, List<Pair<String, Int>>>() {
-        override fun doInBackground(vararg params: Void?): List<Pair<String, Int>> {
-            val products = mutableListOf<Pair<String, Int>>()
-            val connection: Connection? = connectionClass.connectToSQL()
-            try {
-                if (connection != null) {
-                    val query = """
-                        SELECT p.ProductName, sp.quantity 
-                        FROM product p 
-                        JOIN Store_Products sp ON p.product_id = sp.product_id 
-                        WHERE sp.store_id = ?
-                    """
-                    val preparedStatement = connection.prepareStatement(query)
-                    preparedStatement.setString(1, storeId)
-                    val resultSet: ResultSet = preparedStatement.executeQuery()
-                    while (resultSet.next()) {
-                        val productName = resultSet.getString("ProductName")
-                        val quantity = resultSet.getInt("quantity")
-                        products.add(Pair(productName, quantity))
-                    }
-                    resultSet.close()
-                    preparedStatement.close()
-                }
-            } catch (e: SQLException) {
-                e.printStackTrace()
-            } finally {
-                connection?.close()
-            }
-            return products
-        }
-
-        override fun onPostExecute(products: List<Pair<String, Int>>) {
-            super.onPostExecute(products)
-            productAdapter.clear()
-            if (products.isNotEmpty()) {
-                productAdapter.addAll(products)
-            } else {
-                productAdapter.add(Pair("No products found", 0))
-            }
+    private fun updateUI(fetchedProducts: List<Triple<String, Int, Int>>) {
+        products.clear()
+        products.addAll(fetchedProducts)
+        productAdapter.clear()
+        if (fetchedProducts.isNotEmpty()) {
+            productAdapter.addAll(fetchedProducts)
+        } else {
+            productAdapter.add(Triple("No products found", 0, 0))
         }
     }
 

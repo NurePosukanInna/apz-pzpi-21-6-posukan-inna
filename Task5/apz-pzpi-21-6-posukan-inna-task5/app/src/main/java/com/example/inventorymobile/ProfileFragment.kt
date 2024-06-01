@@ -11,19 +11,19 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.example.inventorymobile.Connection.ConnectionClass
 import com.example.inventorymobile.Data.UserData
+import com.example.inventorymobile.service.ProfileService
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.sql.PreparedStatement
-import java.sql.SQLException
 
 class ProfileFragment : Fragment() {
 
     private lateinit var sharedPreferences: SharedPreferences
     private val connectionClass = ConnectionClass()
+    private lateinit var profileService: ProfileService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +31,8 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        sharedPreferences =
-            requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        sharedPreferences = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        profileService = ProfileService(connectionClass)
 
         val userEmail = getUserEmailFromPrefs()
 
@@ -60,11 +60,12 @@ class ProfileFragment : Fragment() {
 
         return view
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         (requireActivity() as? MainActivity)?.setToolbarTitle("Profile")
     }
+
     private fun getUserEmailFromPrefs(): String {
         return sharedPreferences.getString("email", "") ?: ""
     }
@@ -74,40 +75,11 @@ class ProfileFragment : Fragment() {
         lastNameTextView: TextView,
         phoneNumberTextView: TextView
     ) {
-        GlobalScope.launch(Dispatchers.Main) {
+        lifecycleScope.launch {
             val profileData = withContext(Dispatchers.IO) {
-                fetchProfileDataFromDatabase()
+                profileService.fetchProfileData(getUserEmailFromPrefs())
             }
             updateUI(profileData, firstNameTextView, lastNameTextView, phoneNumberTextView)
-        }
-    }
-
-    private suspend fun fetchProfileDataFromDatabase(): UserData {
-        var profileData = UserData("Не определено", "Не определено", "Не определено")
-        val userEmail = getUserEmailFromPrefs()
-        return withContext(Dispatchers.IO) {
-            val connection = connectionClass.connectToSQL()
-            try {
-                if (connection != null) {
-                    val query = "SELECT FirstName, LastName, PhoneNumber FROM [User] WHERE email = ?"
-                    val preparedStatement: PreparedStatement = connection.prepareStatement(query)
-                    preparedStatement.setString(1, userEmail)
-                    val resultSet = preparedStatement.executeQuery()
-                    if (resultSet.next()) {
-                        val firstName = resultSet.getString("FirstName") ?: "Не определено"
-                        val lastName = resultSet.getString("LastName") ?: "Не определено"
-                        val phoneNumber = resultSet.getString("PhoneNumber") ?: "Не определено"
-                        profileData = UserData(firstName, lastName, phoneNumber)
-                    }
-                    resultSet.close()
-                    preparedStatement.close()
-                }
-            } catch (e: SQLException) {
-                e.printStackTrace()
-            } finally {
-                connection?.close()
-            }
-            return@withContext profileData
         }
     }
 
@@ -123,41 +95,14 @@ class ProfileFragment : Fragment() {
     }
 
     private fun updateUserDataInBackground(newFirstName: String, newLastName: String, newPhoneNumber: String) {
-        GlobalScope.launch(Dispatchers.Main) {
+        lifecycleScope.launch {
             val success = withContext(Dispatchers.IO) {
-                performUpdateInBackground(newFirstName, newLastName, newPhoneNumber)
+                profileService.updateUserData(getUserEmailFromPrefs(), newFirstName, newLastName, newPhoneNumber)
             }
             if (success) {
                 Toast.makeText(context, "Data successfully updated", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(context, "Failed to update data", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private suspend fun performUpdateInBackground(newFirstName: String, newLastName: String, newPhoneNumber: String): Boolean {
-        val userEmail = getUserEmailFromPrefs()
-        return withContext(Dispatchers.IO) {
-            val connection = connectionClass.connectToSQL()
-            try {
-                if (connection != null) {
-                    val query = "UPDATE [User] SET FirstName = ?, LastName = ?, PhoneNumber = ? WHERE email = ?"
-                    val preparedStatement: PreparedStatement = connection.prepareStatement(query)
-                    preparedStatement.setString(1, newFirstName)
-                    preparedStatement.setString(2, newLastName)
-                    preparedStatement.setString(3, newPhoneNumber)
-                    preparedStatement.setString(4, userEmail)
-                    preparedStatement.executeUpdate()
-                    preparedStatement.close()
-                    return@withContext true
-                } else {
-                    return@withContext false
-                }
-            } catch (e: SQLException) {
-                e.printStackTrace()
-                return@withContext false
-            } finally {
-                connection?.close()
             }
         }
     }
