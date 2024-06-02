@@ -6,14 +6,21 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.inventorymobile.Connection.ConnectionClass
 import com.example.inventorymobile.service.LoginService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var authService: LoginService
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,20 +38,25 @@ class LoginActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            Thread {
+            coroutineScope.launch {
                 val loginSuccessful = authService.login(email, password)
-                runOnUiThread {
+                withContext(Dispatchers.Main) {
                     if (loginSuccessful) {
-                        Log.d("LoginActivity", "Login successful. Welcome!")
+                        Toast.makeText(this@LoginActivity, "Login successful. Welcome!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
-                        Log.d("LoginActivity", "Login failed. Incorrect email or password.")
+                        Toast.makeText(this@LoginActivity, "Login failed. Incorrect email or password.", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }.start()
+            }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        coroutineScope.cancel()
     }
 
     override fun onResume() {

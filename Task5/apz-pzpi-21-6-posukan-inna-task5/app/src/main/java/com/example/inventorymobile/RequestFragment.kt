@@ -2,7 +2,6 @@ package com.example.inventorymobile
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.inventorymobile.Connection.ConnectionClass
 import com.example.inventorymobile.Data.RequestData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.sql.Connection
-import java.sql.ResultSet
 import java.sql.SQLException
 
 class RequestFragment : Fragment() {
@@ -34,16 +36,23 @@ class RequestFragment : Fragment() {
 
         requestAdapter = object : ArrayAdapter<RequestData>(
             requireContext(),
-            android.R.layout.simple_list_item_1,
-            android.R.id.text1,
+            R.layout.item_request,
+            R.id.textViewProductName,
             mutableListOf()
         ) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-                val view = convertView ?: LayoutInflater.from(context).inflate(android.R.layout.simple_list_item_1, parent, false)
-                val textView = view.findViewById<TextView>(android.R.id.text1)
-                val requestData = getItem(position)!!
-                textView.text = "Product Name: ${requestData.productName}, Quantity: ${requestData.quantity}, Status: ${requestData.requestStatus}, RequestDate: ${requestData.requestDate}, RequestDate: ${requestData.deliveryDate},"
-                return view
+                val itemView = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_request, parent, false)
+                val requestData = getItem(position)
+
+                val productNameTextView = itemView.findViewById<TextView>(R.id.textViewProductName)
+                val quantityTextView = itemView.findViewById<TextView>(R.id.textViewQuantity)
+                val requestStatusTextView = itemView.findViewById<TextView>(R.id.textViewRequestStatus)
+
+                productNameTextView.text = requestData?.productName
+                quantityTextView.text = "Quantity: ${requestData?.quantity}"
+                requestStatusTextView.text = "Status: ${requestData?.requestStatus}"
+
+                return itemView
             }
         }
         requestListView.adapter = requestAdapter
@@ -52,20 +61,20 @@ class RequestFragment : Fragment() {
 
         sharedPreferences = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
-        println("User ID: ${getUserIdFromPrefs()}")
+        fetchRequests()
 
-        FetchRequestsTask().execute()
+        requestListView.setOnItemClickListener { _, _, position, _ ->
+            val requestData = requestAdapter.getItem(position)
+            requestData?.let {
+                navigateToRequestDetail(it.requestId.toString())
+            }
+        }
 
         return view
     }
 
-
-    private fun getUserIdFromPrefs(): Int {
-        return sharedPreferences.getInt("user_id", -1)
-    }
-
-    private inner class FetchRequestsTask : AsyncTask<Void, Void, List<RequestData>>() {
-        override fun doInBackground(vararg params: Void?): List<RequestData> {
+    private fun fetchRequests() {
+        GlobalScope.launch(Dispatchers.IO) {
             val requests = mutableListOf<RequestData>()
             var connection: Connection? = null
             try {
@@ -81,7 +90,7 @@ class RequestFragment : Fragment() {
                     """
                     val preparedStatement = connection.prepareStatement(query)
                     preparedStatement.setInt(1, getUserIdFromPrefs())
-                    val resultSet: ResultSet = preparedStatement.executeQuery()
+                    val resultSet = preparedStatement.executeQuery()
 
                     while (resultSet.next()) {
                         val requestId = resultSet.getInt("request_id")
@@ -107,22 +116,23 @@ class RequestFragment : Fragment() {
                     e.printStackTrace()
                 }
             }
-            return requests
-        }
 
-        override fun onPostExecute(requests: List<RequestData>) {
-            super.onPostExecute(requests)
-            requestAdapter.clear()
-            if (requests.isNotEmpty()) {
+            launch(Dispatchers.Main) {
+                requestAdapter.clear()
                 requestAdapter.addAll(requests)
-            } else {
-                requestAdapter.add(RequestData(0, "", 0, "", null, null, 0.0))
             }
         }
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = RequestFragment()
+    private fun getUserIdFromPrefs(): Int {
+        return sharedPreferences.getInt("user_id", -1)
+    }
+
+    private fun navigateToRequestDetail(requestid: String) {
+        val fragment = RequestDetailFragment.newInstance(requestid)
+        val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_layout, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }

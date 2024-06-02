@@ -10,7 +10,6 @@ import java.sql.Connection
 import java.sql.SQLException
 
 class ProductDetailService(private val context: Context, private val connectionClass: ConnectionClass) {
-
     suspend fun fetchProductDetail(productId: Int): ProductData {
         return withContext(Dispatchers.IO) {
             val productData = ProductData()
@@ -19,11 +18,11 @@ class ProductDetailService(private val context: Context, private val connectionC
                 connection = connectionClass.connectToSQL()
                 if (connection != null) {
                     val query = """
-                        SELECT p.ProductName, sp.quantity, sp.MinQuantity, p.Price, p.Volume, p.MeasureOfUnits
-                        FROM product p
-                        JOIN Store_Products sp ON p.product_id = sp.product_id
-                        WHERE p.product_id = ?
-                    """
+                    SELECT ProductName, quantity, MinQuantity, Price, Volume, MeasureOfUnits
+                    FROM product
+                    JOIN Store_Products ON product.product_id = Store_Products.product_id
+                    WHERE product.product_id = ?
+                """
                     val preparedStatement = connection.prepareStatement(query)
                     preparedStatement.setInt(1, productId)
                     val resultSet = preparedStatement.executeQuery()
@@ -55,19 +54,19 @@ class ProductDetailService(private val context: Context, private val connectionC
             try {
                 connection = connectionClass.connectToSQL()
                 if (connection != null) {
-                    connection.autoCommit = false // Disable auto-commit to start a transaction
+                    connection.autoCommit = false
 
                     val updateProductQuery = """
                     UPDATE product
                     SET ProductName = ?,
-                        Price = ?, 
+                        Price = ?,
                         Volume = ?,
                         MeasureOfUnits = ?
                     WHERE product_id = ?
                 """
                     val updateProductStatement = connection.prepareStatement(updateProductQuery)
                     updateProductStatement.setString(1, productData.productName)
-                    updateProductStatement.setDouble(2, productData.productPrice ?: 0.0) // Установка цены из текстового поля
+                    updateProductStatement.setDouble(2, productData.productPrice ?: 0.0)
                     updateProductStatement.setDouble(3, productData.productVolume ?: 0.0)
                     updateProductStatement.setString(4, productData.productMeasureOfUnits)
                     updateProductStatement.setInt(5, productId)
@@ -79,19 +78,19 @@ class ProductDetailService(private val context: Context, private val connectionC
                         MinQuantity = ?
                     WHERE product_id = ?
                 """
-                    val updateStoreProductsStatement = connection.prepareStatement(updateStoreProductsQuery)
+                    val updateStoreProductsStatement =
+                        connection.prepareStatement(updateStoreProductsQuery)
                     updateStoreProductsStatement.setInt(1, productData.productQuantity ?: 0)
                     updateStoreProductsStatement.setInt(2, productData.productMinQuantity ?: 0)
                     updateStoreProductsStatement.setInt(3, productId)
                     val rowsAffectedStoreProducts = updateStoreProductsStatement.executeUpdate()
 
-                    // Если оба обновления прошли успешно
                     success = rowsAffectedProduct > 0 && rowsAffectedStoreProducts > 0
 
                     if (success) {
-                        connection.commit() // Фиксация транзакции в случае успеха
+                        connection.commit()
                     } else {
-                        connection.rollback() // Откат транзакции в случае неудачи
+                        connection.rollback()
                     }
 
                     updateProductStatement.close()
@@ -101,14 +100,14 @@ class ProductDetailService(private val context: Context, private val connectionC
                 Log.e("ProductService", "Error updating product details: ${e.message}", e)
                 if (connection != null) {
                     try {
-                        connection.rollback() // Откат в случае исключения
+                        connection.rollback()
                     } catch (ex: SQLException) {
                         Log.e("ProductService", "Error rolling back transaction: ${ex.message}", ex)
                     }
                 }
             } finally {
                 try {
-                    connection?.autoCommit = true // Включение автоматического подтверждения транзакций
+                    connection?.autoCommit = true
                     connection?.close()
                 } catch (ex: SQLException) {
                     Log.e("ProductService", "Error closing connection: ${ex.message}", ex)

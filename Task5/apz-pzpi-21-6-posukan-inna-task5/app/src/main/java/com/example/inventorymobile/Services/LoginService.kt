@@ -21,25 +21,31 @@ class LoginService(private val context: Context, private val connectionClass: Co
     fun login(email: String, password: String): Boolean {
         connection = connectionClass.connectToSQL()
         if (connection == null) {
-            Log.e("AuthService", "Failed to connect to the database.")
+            Log.e("LoginService", "Failed to connect to the database.")
             return false
         }
 
         val hashedPassword = hashPassword(password)
+        Log.d("LoginService", "Hashed Password: $hashedPassword")
+
         val query = "SELECT * FROM [User] WHERE email = ? AND password = ?"
         return try {
             connection?.prepareStatement(query)?.use { statement ->
                 statement.setString(1, email)
                 statement.setString(2, hashedPassword)
+                Log.d("LoginService", "Executing query: $query with email: $email and hashedPassword: $hashedPassword")
                 val rs: ResultSet = statement.executeQuery()
                 val loginSuccess = rs.next()
                 if (loginSuccess) {
                     saveEmailToPrefs(email)
+                    Log.d("LoginService", "Login successful for email: $email")
+                } else {
+                    Log.d("LoginService", "Login failed for email: $email")
                 }
                 loginSuccess
             } ?: false
         } catch (e: Exception) {
-            Log.e("AuthService", "Error logging in: ${e.message}", e)
+            Log.e("LoginService", "Error logging in: ${e.message}", e)
             false
         } finally {
             connection?.close()
@@ -53,7 +59,7 @@ class LoginService(private val context: Context, private val connectionClass: Co
             val hashedBytes = messageDigest.digest(password.toByteArray())
             Base64.getEncoder().encodeToString(hashedBytes)
         } catch (e: Exception) {
-            Log.e("AuthService", "Error hashing password: ${e.message}", e)
+            Log.e("LoginService", "Error hashing password: ${e.message}", e)
             ""
         }
     }

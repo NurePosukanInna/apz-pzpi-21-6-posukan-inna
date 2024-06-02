@@ -17,8 +17,8 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.inventorymobile.Connection.ConnectionClass
 import com.example.inventorymobile.Data.StoreData
 import com.example.inventorymobile.service.HomeService
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -86,7 +86,7 @@ class HomeFragment : Fragment() {
 
     private fun fetchStores() {
         val email = sharedPreferences.getString("email", "") ?: ""
-        GlobalScope.launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.IO).launch {
             val userId = databaseService.getUserIdFromEmail(email)
             val storesWithSensors = databaseService.fetchStores(userId)
             withContext(Dispatchers.Main) {

@@ -2,7 +2,6 @@ package com.example.inventorymobile.service
 
 import android.content.Context
 import com.example.inventorymobile.Connection.ConnectionClass
-import com.example.inventorymobile.Data.ProductData
 import java.sql.Connection
 import java.sql.ResultSet
 import java.sql.SQLException

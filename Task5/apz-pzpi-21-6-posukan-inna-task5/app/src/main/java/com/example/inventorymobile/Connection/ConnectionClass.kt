@@ -12,7 +12,7 @@ class ConnectionClass {
 
     @SuppressLint("NewApi")
     fun connectToSQL(): Connection? {
-        val ip = "192.168.0.102"
+        val ip = "192.168.0.103"
         val port = "1433"
         val db = "Inventory"
         val username = "dbAdmin"

@@ -1,33 +1,33 @@
 package com.example.inventorymobile.service
 
+import android.util.Log
 import com.example.inventorymobile.Connection.ConnectionClass
 import com.example.inventorymobile.Data.UserData
 import java.sql.Connection
-import java.sql.PreparedStatement
 import java.sql.SQLException
 
 class ProfileService(private val connectionClass: ConnectionClass) {
 
     fun fetchProfileData(userEmail: String): UserData {
         var profileData = UserData("Undefined", "Undefined", "Undefined")
-        val connection: Connection? = connectionClass.connectToSQL()
+        var connection: Connection? = null
         try {
+            connection = connectionClass.connectToSQL()
             if (connection != null) {
                 val query = "SELECT FirstName, LastName, PhoneNumber FROM [User] WHERE email = ?"
-                val preparedStatement: PreparedStatement = connection.prepareStatement(query)
-                preparedStatement.setString(1, userEmail)
-                val resultSet = preparedStatement.executeQuery()
-                if (resultSet.next()) {
-                    val firstName = resultSet.getString("FirstName") ?: "Undefined"
-                    val lastName = resultSet.getString("LastName") ?: "Undefined"
-                    val phoneNumber = resultSet.getString("PhoneNumber") ?: "Undefined"
-                    profileData = UserData(firstName, lastName, phoneNumber)
+                connection.prepareStatement(query).use { preparedStatement ->
+                    preparedStatement.setString(1, userEmail)
+                    val resultSet = preparedStatement.executeQuery()
+                    if (resultSet.next()) {
+                        val firstName = resultSet.getString("FirstName") ?: "Undefined"
+                        val lastName = resultSet.getString("LastName") ?: "Undefined"
+                        val phoneNumber = resultSet.getString("PhoneNumber") ?: "Undefined"
+                        profileData = UserData(firstName, lastName, phoneNumber)
+                    }
                 }
-                resultSet.close()
-                preparedStatement.close()
             }
         } catch (e: SQLException) {
-            e.printStackTrace()
+            Log.e("ProfileService", "Error fetching profile data: ${e.message}", e)
         } finally {
             connection?.close()
         }
@@ -35,23 +35,24 @@ class ProfileService(private val connectionClass: ConnectionClass) {
     }
 
     fun updateUserData(userEmail: String, newFirstName: String, newLastName: String, newPhoneNumber: String): Boolean {
-        val connection: Connection? = connectionClass.connectToSQL()
+        var connection: Connection? = null
         return try {
+            connection = connectionClass.connectToSQL()
             if (connection != null) {
                 val query = "UPDATE [User] SET FirstName = ?, LastName = ?, PhoneNumber = ? WHERE email = ?"
-                val preparedStatement: PreparedStatement = connection.prepareStatement(query)
-                preparedStatement.setString(1, newFirstName)
-                preparedStatement.setString(2, newLastName)
-                preparedStatement.setString(3, newPhoneNumber)
-                preparedStatement.setString(4, userEmail)
-                preparedStatement.executeUpdate()
-                preparedStatement.close()
+                connection.prepareStatement(query).use { preparedStatement ->
+                    preparedStatement.setString(1, newFirstName)
+                    preparedStatement.setString(2, newLastName)
+                    preparedStatement.setString(3, newPhoneNumber)
+                    preparedStatement.setString(4, userEmail)
+                    preparedStatement.executeUpdate()
+                }
                 true
             } else {
                 false
             }
         } catch (e: SQLException) {
-            e.printStackTrace()
+            Log.e("ProfileService", "Error updating user data: ${e.message}", e)
             false
         } finally {
             connection?.close()
