@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
         listViewStores = view.findViewById(R.id.listViewStores)
         connectionClass = ConnectionClass()
-        databaseService = HomeService(connectionClass)
+        databaseService = HomeService(requireContext(), connectionClass)
         sharedPreferences = requireContext().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         storeAdapter = object : ArrayAdapter<StoreData>(requireContext(), R.layout.item_shop, mutableListOf()) {
