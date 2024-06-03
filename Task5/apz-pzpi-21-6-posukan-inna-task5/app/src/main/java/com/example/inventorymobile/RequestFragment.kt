@@ -72,6 +72,10 @@ class RequestFragment : Fragment() {
 
         return view
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as? MainActivity)?.setToolbarTitle("Request")
+    }
 
     private fun fetchRequests() {
         GlobalScope.launch(Dispatchers.IO) {

@@ -8,15 +8,16 @@ import java.sql.SQLException
 
 class ProductService(private val context: Context, private val connectionClass: ConnectionClass) {
 
-    fun fetchProducts(storeId: String): List<Triple<String, Int, Int>> {
-        val products = mutableListOf<Triple<String, Int, Int>>()
+    fun fetchProducts(storeId: String): List<Triple<String, String, Int>> {
+        val products = mutableListOf<Triple<String, String, Int>>()
         val connection: Connection? = connectionClass.connectToSQL()
         try {
             if (connection != null) {
                 val query = """
-                    SELECT p.product_id, p.ProductName, sp.quantity 
+                    SELECT p.product_id, p.ProductName, c.CategoryName
                     FROM product p 
                     JOIN Store_Products sp ON p.product_id = sp.product_id 
+                    JOIN category c ON p.category_id = c.category_id
                     WHERE sp.store_id = ?
                 """
                 val preparedStatement = connection.prepareStatement(query)
@@ -25,8 +26,8 @@ class ProductService(private val context: Context, private val connectionClass: 
                 while (resultSet.next()) {
                     val productId = resultSet.getInt("product_id")
                     val productName = resultSet.getString("ProductName")
-                    val quantity = resultSet.getInt("quantity")
-                    products.add(Triple(productName, quantity, productId))
+                    val categoryName = resultSet.getString("CategoryName")
+                    products.add(Triple(productName, categoryName, productId))
                 }
                 resultSet.close()
                 preparedStatement.close()

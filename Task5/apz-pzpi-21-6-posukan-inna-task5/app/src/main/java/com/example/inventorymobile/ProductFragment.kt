@@ -20,9 +20,9 @@ class ProductFragment : Fragment() {
 
     private lateinit var storeId: String
     private lateinit var productListView: ListView
-    private lateinit var productAdapter: ArrayAdapter<Triple<String, Int, Int>>
+    private lateinit var productAdapter: ArrayAdapter<Triple<String, String, Int>>
     private lateinit var productService: ProductService
-    private var products = mutableListOf<Triple<String, Int, Int>>()
+    private var products = mutableListOf<Triple<String, String, Int>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +34,9 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_product, container, false)
-
         productListView = view.findViewById(R.id.listViewProducts)
 
-        productAdapter = object : ArrayAdapter<Triple<String, Int, Int>>(
+        productAdapter = object : ArrayAdapter<Triple<String, String, Int>>(
             requireContext(),
             R.layout.item_product,
             R.id.textViewProductName,
@@ -46,10 +45,10 @@ class ProductFragment : Fragment() {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_product, parent, false)
                 val productNameTextView = view.findViewById<TextView>(R.id.textViewProductName)
-                val productQuantityTextView = view.findViewById<TextView>(R.id.textViewProductQuantity)
-                val (productName, productQuantity, _) = getItem(position)!!
+                val categoryTextView = view.findViewById<TextView>(R.id.textViewCategory)
+                val (productName, categoryName, _) = getItem(position)!!
                 productNameTextView.text = productName
-                productQuantityTextView.text = "Quantity: $productQuantity"
+                categoryTextView.text = "Category: $categoryName"
                 return view
             }
         }
@@ -83,14 +82,14 @@ class ProductFragment : Fragment() {
         (requireActivity() as? MainActivity)?.setToolbarTitle("Products")
     }
 
-    private fun updateUI(fetchedProducts: List<Triple<String, Int, Int>>) {
+    private fun updateUI(fetchedProducts: List<Triple<String, String, Int>>) {
         products.clear()
         products.addAll(fetchedProducts)
         productAdapter.clear()
         if (fetchedProducts.isNotEmpty()) {
             productAdapter.addAll(fetchedProducts)
         } else {
-            productAdapter.add(Triple("No products found", 0, 0))
+            productAdapter.add(Triple("No products found", "", 0))
         }
     }
 

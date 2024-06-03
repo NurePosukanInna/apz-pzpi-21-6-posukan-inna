@@ -59,7 +59,10 @@ class RequestDetailFragment : Fragment() {
 
         return view
     }
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (requireActivity() as? MainActivity)?.setToolbarTitle("Request Details")
+    }
     private fun loadDataFromDatabase(requestId: String?) {
         requestDetailService.loadDataFromDatabase(requestId, this)
     }
